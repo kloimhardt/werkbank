@@ -1,0 +1,8 @@
+body {
+  font-size: 20px;
+}
+
+.input-group .btn {
+  border-radius: 0;
+  height: unset;
+}

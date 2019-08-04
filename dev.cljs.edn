@@ -1,0 +1,3 @@
+^{:watch-dirs ["src"]
+  :ring-handler abc.app-server/handler-figwheel}
+{:main abc.view}

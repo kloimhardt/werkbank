@@ -1,0 +1,149 @@
+1
+Hello.
+Today, I will study
+the driven pendulum.
+In the end,
+we will have this workspace -scroll down
+which delivers
+the equation of motion
+of the driven pendulum.
+
+It is a differential equation,
+according to Newton's second law. -press run
+
+But in the beginning,
+is a clear the workspace -reload browser
+and Newton's first law.
+
+In some inertial frame of reference,
+an object continues to move in space
+at a constant velocity.
+
+It takes time to do that,
+so our function
+which we call path-of-free-particle -2
+depends on time. -3
+It returns a vector of two dimensions, -4
+because we make the choice
+of our free little path to live in two dimensions.
+
+The Kinetic Energy
+is  half the mass times velocity squared.
+If we set the mass to two kilogram,
+the formular becomes simpler. -5
+
+We know that the velocity of our free particle
+is 5 meters per second in the x direction,
+and 4 meters per second in the y direction.
+An object continues to move in space
+at a constant velocity after all.
+
+But notice that our Kinetic Energy
+is much more versatile.
+It could eat any velocity we feed it 
+the velocity even could depend on time.
+And it certaily will depend on time
+in the case of the pendulum.
+
+The Lagrangian -8
+is just the kinetic Energy. -9
+which we feed the vector
+of the velocity components.
+
+In general, a Lagrangian
+not only depends on the velocity 
+but also on time and position,
+both of which are not yet using.
+
+The Lagrangian equations
+are Differential equations -11
+which eat the path -12
+and deliver a function of time,
+which we set to 10 seconds here. -13
+
+Lets print the equations: -14
+
+--press run
+
+The equations are the zero vector
+because we fed the solution to the
+equation of motion.
+
+Now comes the magic trick:
+I create a vector of two arbitray functions
+call tehm qx and qy -15
+and replace the known path with it. -16
+and run again.
+
+--press run
+
+I Make the equations prettier
+and replace 10 by some time 't -17
+and introducing a mass 'm
+into the Kinetic Energy -18
+I can even throw away the path-of-a-free-particle
+like a ladder after climbing a wall. -19
+
+--ress run
+
+Here we are,
+the equations of motion
+for the free particle:
+the second derivtive is zero.
+
+Now introduce gravity
+bay means of the potential energy
+which depends on the hight -20
+and is m times g times hight.
+Where g is 9.8 meters per second per second,
+the acceleration due to the gravity of the earth. -21
+
+The Lagrangian is
+Kinetic Energy minus Potentil Energy -22
+the Lagrangian now depends on th hight. -23
+
+Pressing run delivers the equations
+for the particle in the homogenous
+gravitational field.
+
+--press run
+
+The moving particle will be turned
+into the pendulum by introducing
+constraints on the coordinates x and y.
+
+I do this by making a coordinate
+transformation to some angle. -24
+The angle is kind of buried
+in the chamber of some blocks,
+notice the same depth as the
+y coodinate in the Lagrangian.
+
+The horizontal position x
+is just 'l times sine of the angle. -25
+'l beig the length of the pendulum
+The hight of the bob is
+'h minus 'l time cosine phi -26
+'h being the hight of the pivot
+
+The new Lagrangian is obtained by
+prepending the Lagragian of 
+
+with the transformation -27
+and we need some function phi -28
+and replace the old Lagrangian
+and functions. -29
+
+pressing run
+
+--press run
+
+delivers the equation for the function phi.
+
+making the hight of the pivot time dependent:
+Introduce th function hight-of-pivot
+whic depends on time -30
+and is some arbitrary function -31
+replace 'h by this funtion -32
+
+
