@@ -17,3 +17,5 @@ to open a sample, in the workspace, press the "Choose file" button and open "cod
 We have a demo video:
 
 https://kloimhardt.github.io/driven_pendulum.mp4
+
+There is also a draft for a paper (in German) "ga_pro_kla_mech.pdf" in the "/docs" directory
