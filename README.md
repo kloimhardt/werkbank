@@ -2,7 +2,7 @@
 
 to build, enter the following shell command:
 
-clojure -m figwheel.main --build dev
+    clojure -m figwheel.main --build dev
 
 to start the server, enter the following url in browser:
 
