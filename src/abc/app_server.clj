@@ -55,7 +55,7 @@
           (spit d "\n" :append true)
           (spit d x :append true))
         (spit d "\n" :append true)
-        (spit d '(print-text "_" "<") :append true)
+        ;;(spit d '(print-text "_" "<") :append true)
         (copy-file d "src/abc/code.clj")))))
 
 (defn xml-resp [req]

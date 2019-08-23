@@ -91,5 +91,5 @@
 (defmacro mute-vega [id path-fn x] nil)
 
 (print-text "reset-7236491003" "") ;;clear plot area in front-end
-(print-text ">" "")
+;;(print-text ">" "")
 ;;----------------------------------------------------------------------

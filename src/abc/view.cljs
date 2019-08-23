@@ -57,7 +57,7 @@
               (list
                 [:td {:key (str id "id") :style {:border-bottom "1pt solid black"
                                                  :border-left "1pt solid black"}} id]
-                [:td {:key id :style {:border-bottom "10pt solid gray"}}
+                [:td {:key id :style {:border-bottom "1pt solid black"}}
                  [:div
                   (condp = typ
                     :tex [(comp-dom tex-renderings) id input]
