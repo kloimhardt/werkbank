@@ -174,6 +174,7 @@
                                          "tex",
                                          "tex"
                                      ],
+                                     ["svg", "svg"],
                                      [
                                          "tex-matrix",
                                          "tex-matrix"
@@ -721,8 +722,8 @@
                                  "name": "onlymap",
                                  "options": [
                                      [
-                                         "{...}",
-                                         "{...}"
+                                         "{ }",
+                                         "{ }"
                                      ]
                                  ]
                              },
@@ -732,7 +733,7 @@
                              }
                          ],
                          "output": null,
-                         "colour": 140,
+                         "colour": 215, //140
                          "tooltip": "",
                          "helpUrl": ""
                      }
@@ -749,8 +750,8 @@
                                  "name": "onlyvector",
                                  "options": [
                                      [
-                                         "[...]",
-                                         "[...]"
+                                         "[ ]",
+                                         "[ ]"
                                      ]
                                  ]
                              },
@@ -760,7 +761,7 @@
                              }
                          ],
                          "output": null,
-                         "colour": 140,
+                         "colour": 195, //140
                          "tooltip": "",
                          "helpUrl": ""
                      }
@@ -982,7 +983,8 @@
                      }
                  )}}
             </script>
-            <div id="blocklyDiv" style="height: 520px; width: 1400px;"></div>
+            <div id="blocklyDiv" style="height: 96%"></div>
+            <!--  <div id="blocklyDiv" style="height: 520px; width: 1400px;"></div> -->
             <xml id="toolbox" style="display: none">
                 <category name="Inline<">
                     <block type="sym_funs-h-2"></block>
@@ -1009,13 +1011,13 @@
                     <block type="num"></block>
                     <block type="num_sym"></block>
                     <block type="text"></block>
-                    <block type="funs-v-3-def"></block>
-                    <block type="let"></block>
-                    <!-- <block type="map"></block>-->
-                    <block type="vector"></block>
-                    <block type="pair"></block>
                     <block type="idfuns-v-3"></block>
                     <block type="idfuns-v-4"></block>
+                    <block type="vector"></block>
+                    <block type="pair"></block>
+                    <block type="funs-v-3-def"></block>
+                    <block type="let"></block>
+                    <block type="map"></block>
                 </category>
                 <category name="Defn">
                     <block type="funs-v-4-defn"></block>
@@ -1065,13 +1067,15 @@
                  Blockly.mainWorkspace.getAllBlocks().forEach(function(b) {
                      //b.setMovable(false);
                      //b.setEditable(true);
-                     b.setShadow(false);
 
                      b.inputList.forEach(il => {
                          il.fieldRow.forEach(fr => {
                              fr.textElement_.classList.replace("klmtext","blocklyText")})})
+
+                     b.setShadow(false);
                  });
              }
+
              function loadFileAsText(){
                  //document.getElementById("fileToLoad").disabled=true;
                  var fileToLoad = document.getElementById("fileToLoad").files[0];
@@ -1118,7 +1122,8 @@
                  xmlhttp.send(xml);
              }
             </script>
-           <!--  <button onclick="Blockly.mainWorkspace.scrollbar.set(450,Blockly.mainWorkspace.getMetrics().contentHeight-500);">scroll</button> -->
+            <!--  <button onclick="Blockly.mainWorkspace.scrollbar.set(450,Blockly.mainWorkspace.getMetrics().contentHeight-500);">scroll</button> -->
+            <div>
             <button onclick="shadeBlocks();">Shade Blocks</button>
             <button onclick="unshadeBlocks();">Unshade Blocks</button>
             <button onClick="saveXML();">Save XML</button>
@@ -1130,7 +1135,8 @@
                          <button onClick="sendXMLToServer()">Run</button>
  <!--                          <text class="blocklyText">blocklyText</text>
                          <text class="klmtext">klmText</text>
-                         <text>normal</text> -->
+      <text>normal</text> -->
+            </div>
         </body>
     </head>
 </html>

@@ -5,7 +5,8 @@
             [sicmutils.env :refer :all :as env]
             [sicmutils.mechanics.lagrange :as lg]
             [sicmutils.numerical.minimize :as mn]
-            [abc.app-server :as app-server]))
+            [abc.app-server :as app-server]
+            [abc.setup :as setup]))
 
 (defn points->plot [paths x-axis-name y-axis-name]
   (let [coord-encoding (fn [coord] {:field coord :type "quantitative" :scale {:zero false}})
@@ -65,6 +66,9 @@
 (defn vega-lite [id vega-data]
   (send-to-page (check-ids! id) :vega vega-data))
 
+(defn svg [id svg-data]
+  (send-to-page (check-ids! id) :svg svg-data))
+
 (defn vega [id points-fn data]
   (send-to-page (check-ids! id) :vega (points-fn data)))
 
@@ -93,4 +97,4 @@
 (print-text "reset-7236491003" "") ;;clear plot area in front-end
 ;;(print-text ">" "")
 ;;----------------------------------------------------------------------
-(tex "x(t) =" (Path-of-a-Free-Particle (quote t)))
+(svg "hu" [:svg {:width 1000, :height 500} [:circle {:cx 0, :cy 0, :r 10, :fill "green"}] [:circle {:cx 100, :cy 100, :r 20, :fill "purple"}]])

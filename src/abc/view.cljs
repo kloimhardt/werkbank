@@ -63,7 +63,8 @@
                     :tex [(comp-dom tex-renderings) id input]
                     :vega [(comp-dom vega-renderings) id input]
                     :plotly [(comp-dom plotly-renderings) id input]
-                    :string [:p (str input)])]])))]
+                    :string [:p (str input)]
+                    :svg input)]])))]
     (fn []
       [:div.table_wrapper [:table [:tbody [:tr  (doall (map cmp @(server-state :read)))]]]])))
 

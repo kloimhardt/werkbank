@@ -5,7 +5,8 @@
             [sicmutils.env :refer :all :as env]
             [sicmutils.mechanics.lagrange :as lg]
             [sicmutils.numerical.minimize :as mn]
-            [abc.app-server :as app-server]))
+            [abc.app-server :as app-server]
+            [abc.setup :as setup]))
 
 (defn points->plot [paths x-axis-name y-axis-name]
   (let [coord-encoding (fn [coord] {:field coord :type "quantitative" :scale {:zero false}})
@@ -64,6 +65,9 @@
 
 (defn vega-lite [id vega-data]
   (send-to-page (check-ids! id) :vega vega-data))
+
+(defn svg [id svg-data]
+  (send-to-page (check-ids! id) :svg svg-data))
 
 (defn vega [id points-fn data]
   (send-to-page (check-ids! id) :vega (points-fn data)))
