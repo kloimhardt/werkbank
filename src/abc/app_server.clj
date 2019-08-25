@@ -83,6 +83,7 @@
 (compojure/defroutes home-routes
   (compojure/POST "/thexml" request (xml-resp request))
   (compojure/GET "/wspace" request (page/view))
+  (compojure/GET "/habra" request (page/habra))
   (compojure/GET "/ws" request (ws-handler request))
   (route/resources "/")
   (route/not-found "Server is started, but page not found"))

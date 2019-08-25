@@ -77,3 +77,6 @@
   #_(r/render (macros/la-habra) (.getElementById js/document "app"))
   #_(r/render [drawing] (.getElementById js/document "app"))
   (r/render [page] (.getElementById js/document "app")))
+
+(defn ^:export starthabra []
+  (r/render [la-habra/drawing] (.getElementById js/document "app")))
