@@ -66,8 +66,15 @@
 (defn vega-lite [id vega-data]
   (send-to-page (check-ids! id) :vega vega-data))
 
-(defn svg [id svg-data]
-  (send-to-page (check-ids! id) :svg svg-data))
+(defn div [id html-data]
+  (send-to-page (check-ids! id) :div html-data))
+
+(defmacro la-habra-code [] [:div])
+
+(defmacro la-habra [reagent-component-vector]
+  (app-server/write-la-habra reagent-component-vector)
+  (send-to-page "la-habra" :la-habra (str reagent-component-vector))
+  nil)
 
 (defn vega [id points-fn data]
   (send-to-page (check-ids! id) :vega (points-fn data)))

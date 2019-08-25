@@ -4,6 +4,6 @@
         hiccup {:mvn/version "1.0.5"}
         reagent {:mvn/version "0.8.0"}
         net.littleredcomputer/sicmutils {:mvn/version "0.12.0-SNAPSHOT"}}
- :paths ["src" "target" "resources"]}
+ :paths ["src" "ui_src" "target" "resources"]}
 
 ;;clojure -m figwheel.main --build dev

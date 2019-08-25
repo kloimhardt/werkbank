@@ -1,15 +1,16 @@
-(ns abc.view
+(ns ^:figwheel-always abc.view
   (:require [cljs.reader :as edn]
-            [reagent.core :as r]))
+            [reagent.core :as r]
+            [abc.la-habra :as la-habra]))
 
 (defn make-websocket! [url write-fun]
- (.log js/console "attempting to connect websocket")
- (if-let [chan (js/WebSocket. url)]
-   (do
-     (set! (.-onmessage chan)
-          (fn [msg] (write-fun (edn/read-string (.-data msg)))))
-     (.log js/console "Websocket connection established with: " url))
-   (throw (js/Error. "Websocket connection failed!"))))
+  (.log js/console "attempting to connect websocket")
+  (if-let [chan (js/WebSocket. url)]
+    (do
+      (set! (.-onmessage chan)
+            (fn [msg] (write-fun (edn/read-string (.-data msg)))))
+      (.log js/console "Websocket connection established with: " url))
+    (throw (js/Error. "Websocket connection failed!"))))
 
 (defn app-db [init url]
   (let [state2-ref (r/atom init)
@@ -64,9 +65,15 @@
                     :vega [(comp-dom vega-renderings) id input]
                     :plotly [(comp-dom plotly-renderings) id input]
                     :string [:p (str input)]
-                    :svg input)]])))]
+                    :div input
+                    :la-habra [la-habra/drawing]
+                    )]])))]
     (fn []
       [:div.table_wrapper [:table [:tbody [:tr  (doall (map cmp @(server-state :read)))]]]])))
 
+
+
 (defn ^:export start []
+  #_(r/render (macros/la-habra) (.getElementById js/document "app"))
+  #_(r/render [drawing] (.getElementById js/document "app"))
   (r/render [page] (.getElementById js/document "app")))

@@ -66,8 +66,15 @@
 (defn vega-lite [id vega-data]
   (send-to-page (check-ids! id) :vega vega-data))
 
-(defn svg [id svg-data]
-  (send-to-page (check-ids! id) :svg svg-data))
+(defn div [id html-data]
+  (send-to-page (check-ids! id) :div html-data))
+
+(defmacro la-habra-code [] [:div])
+
+(defmacro la-habra [reagent-component-vector]
+  (app-server/write-la-habra reagent-component-vector)
+  (send-to-page "la-habra" :la-habra (str reagent-component-vector))
+  nil)
 
 (defn vega [id points-fn data]
   (send-to-page (check-ids! id) :vega (points-fn data)))
@@ -97,4 +104,5 @@
 (print-text "reset-7236491003" "") ;;clear plot area in front-end
 ;;(print-text ">" "")
 ;;----------------------------------------------------------------------
-(svg "hu" [:svg {:width 1000, :height 500} [:circle {:cx 0, :cy 0, :r 10, :fill "green"}] [:circle {:cx 100, :cy 100, :r 20, :fill "purple"}]])
+(mute-print "id" [(let [colors [midnight midnight midnight midnight yellow yellow white white]] (draw (style {:opacity 0.9} (gen-rect (val-cyc frame colors) 0 0 "100vw" "100%")))) (when-not (nth-frame 8 frame) (gen-line-grid midnight 4 80 80 {:col 20, :row 20})) (->> (gen-circ white 0 0 100) (style {:opacity 0.7}) (style {:transform "translate(10vh, 60vh)"}) (gen-group {:style {:animation "scaley 10s infinite"}})) (->> (gen-circ white (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) (val-cyc frame [100 200 200])) (draw) (when (nth-frame 4 frame)))])
+(la-habra [(let [colors [midnight midnight midnight midnight yellow yellow white white]] (draw (style {:opacity 0.9} (gen-rect (val-cyc frame colors) 0 0 "100vw" "100%")))) (when-not (nth-frame 8 frame) (gen-line-grid midnight 4 80 80 {:col 20, :row 20})) (->> (gen-circ white (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) (val-cyc frame [100 200 200])) (draw) (when (nth-frame 4 frame)))])

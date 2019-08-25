@@ -48,8 +48,8 @@
     (println "in writexml" a)
     (when (not (empty? a))
       (spit "code_template/workspace.xml" xml)
-      (let [d "code_template/code_temp.clj"]
-        (copy-file "code_template/code.clj" d)
+      (let [d "code_template/c_temp.clj"]
+        (copy-file "code_template/code_trunk.clj" d)
         (spit d (first code) :append true)
         (doseq [x (subvec code 1)]
           (spit d "\n" :append true)
@@ -57,6 +57,15 @@
         (spit d "\n" :append true)
         ;;(spit d '(print-text "_" "<") :append true)
         (copy-file d "src/abc/code.clj")))))
+
+(defn write-la-habra [cx-vector]
+  (let [d "code_template/h_temp.clj"]
+    (spit d (slurp "code_template/la_habra_trunk_1.cljs"))
+    (spit d "\n (defn cx [frame] " :append true)
+    (spit d (str "(seq " cx-vector ")") :append true)
+    (spit d ")" :append true)
+    (spit d (slurp "code_template/la_habra_trunk_2.cljs") :append true)
+    (copy-file d "src/abc/la_habra.cljs")))
 
 (defn xml-resp [req]
   (let [xml (r/body-string req)
