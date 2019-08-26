@@ -5,8 +5,7 @@
             [sicmutils.env :refer :all :as env]
             [sicmutils.mechanics.lagrange :as lg]
             [sicmutils.numerical.minimize :as mn]
-            [abc.app-server :as app-server]
-            [abc.setup :as setup]))
+            [abc.app-server :as app-server]))
 
 (defn points->plot [paths x-axis-name y-axis-name]
   (let [coord-encoding (fn [coord] {:field coord :type "quantitative" :scale {:zero false}})

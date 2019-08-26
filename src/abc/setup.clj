@@ -8,5 +8,3 @@
 (defn set-iframeheight [iframeheight]
   (swap! setup assoc :iframeheight iframeheight)
   iframeheight)
-
-(def la-habra-def [:div])

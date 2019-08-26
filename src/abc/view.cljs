@@ -52,31 +52,41 @@
   (let [[_ _id plotly-form] (r/argv this)]
     (.plot js/Plotly (r/dom-node this) (clj->js plotly-form))))
 
-(defn page []
+(defn render-dispatch [id typ input]
+  [:div
+   ({:tex [(comp-dom tex-renderings) id input]
+     :vega [(comp-dom vega-renderings) id input]
+     :plotly [(comp-dom plotly-renderings) id input]
+     :string [:p (str input)]
+     :div input
+     :la-habra [:p "la-habra"]}
+    typ)])
+
+(defn wspace []
   (letfn [(cmp [[kw-id [typ kmdo input]]]
             (let [id (name kw-id)]
               (list
+                (.log js/console input)
                 [:td {:key (str id "id") :style {:border-bottom "1pt solid black"
                                                  :border-left "1pt solid black"}} id]
                 [:td {:key id :style {:border-bottom "1pt solid black"}}
-                 [:div
-                  (condp = typ
-                    :tex [(comp-dom tex-renderings) id input]
-                    :vega [(comp-dom vega-renderings) id input]
-                    :plotly [(comp-dom plotly-renderings) id input]
-                    :string [:p (str input)]
-                    :div input
-                    :la-habra [la-habra/drawing]
-                    )]])))]
+                 [render-dispatch id typ input]])))]
     (fn []
       [:div.table_wrapper [:table [:tbody [:tr  (doall (map cmp @(server-state :read)))]]]])))
 
+(defn vegatex []
+  (letfn [(cmp [[kw-id [typ kmdo input]]]
+            (let [id (name kw-id)]
+              ^{:key (str id "id")}
+              [:div id [render-dispatch id typ input]]))]
+    (fn []
+      [:div (doall (map cmp @(server-state :read)))])))
 
+(defn ^:export startwspace []
+  (r/render [wspace] (.getElementById js/document "app")))
 
-(defn ^:export start []
-  #_(r/render (macros/la-habra) (.getElementById js/document "app"))
-  #_(r/render [drawing] (.getElementById js/document "app"))
-  (r/render [page] (.getElementById js/document "app")))
+(defn ^:export startvegatex []
+  (r/render [vegatex] (.getElementById js/document "app")))
 
 (defn ^:export starthabra []
   (r/render [la-habra/drawing] (.getElementById js/document "app")))

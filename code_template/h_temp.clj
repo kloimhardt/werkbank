@@ -449,7 +449,7 @@
 
       ))) ; cx end
 
- (defn cx [frame] (seq [(let [colors [midnight midnight midnight midnight yellow yellow white white]] (draw (style {:opacity 0.9} (gen-rect (val-cyc frame colors) 0 0 "100vw" "100%")))) (when-not (nth-frame 8 frame) (gen-line-grid white 4 80 80 {:col 20, :row 20})) (->> (gen-circ white (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) (val-cyc frame [100 200 200])) (draw) (when (nth-frame 4 frame)))]))
+ (defn cx [frame] (seq [(let [colors [midnight midnight midnight midnight yellow yellow white white]] (draw (style {:opacity 0.9} (gen-rect (val-cyc frame colors) 0 0 "100vw" "100%")))) (when-not (nth-frame 8 frame) (gen-line-grid midnight 4 80 80 {:col 20, :row 20})) (->> (gen-circ white (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) (val-cyc frame [100 200 200])) (draw) (when (nth-frame 4 frame)))]))
 (when DEBUG
   (defonce collection (atom (cx 1))))
 

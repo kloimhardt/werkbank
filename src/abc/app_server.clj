@@ -27,20 +27,8 @@
     (http-kit/on-close channel (partial disconnect! channel))
     (http-kit/on-receive channel #(notify-clients %))))
 
-
 (defn copy-file [source-path dest-path]
   (io/copy (io/file source-path) (io/file dest-path)))
-
-#_(defn write-code [code]
-    (println "in writecode" code)
-    (when code
-      (let [d "code_template/code_temp.clj"]
-        (copy-file "code_template/code.clj" d)
-        (spit d (first code) :append true)
-        (doseq [x (subvec code 1)]
-          (spit d "\n" :append true)
-          (spit d x :append true))
-        (copy-file d "src/abc/code.clj"))))
 
 (defn write-xml [xml]
   (let [a (x/parse xml)
@@ -49,7 +37,8 @@
     (when (not (empty? a))
       (spit "code_template/workspace.xml" xml)
       (let [d "code_template/c_temp.clj"]
-        (copy-file "code_template/code_trunk.clj" d)
+        (spit d ";;this is a compter generated file")
+        (spit d (slurp "code_template/code_trunk.clj"))
         (spit d (first code) :append true)
         (doseq [x (subvec code 1)]
           (spit d "\n" :append true)
@@ -60,6 +49,7 @@
 
 (defn write-la-habra [cx-vector]
   (let [d "code_template/h_temp.clj"]
+    (spit d ";;this is a compter generated file")
     (spit d (slurp "code_template/la_habra_trunk_1.cljs"))
     (spit d "\n (defn cx [frame] " :append true)
     (spit d (str "(seq " cx-vector ")") :append true)
@@ -82,8 +72,9 @@
 
 (compojure/defroutes home-routes
   (compojure/POST "/thexml" request (xml-resp request))
-  (compojure/GET "/wspace" request (page/view))
-  (compojure/GET "/habra" request (page/habra))
+  (compojure/GET "/wspace" request (page/view :wspace))
+  (compojure/GET "/vegatex" request (page/view :vegatex))
+  (compojure/GET "/habra" request (page/view :habra))
   (compojure/GET "/ws" request (ws-handler request))
   (route/resources "/")
   (route/not-found "Server is started, but page not found"))
@@ -107,7 +98,7 @@
 (defn handler-figwheel [req]
   (condp = (:uri req)
     "/thexml" (xml-resp req)
-    "/test" (page/view)
+    "/test" (page/view :wspace)
     "/http-kit" (start-server)
     "/http-kit-stop" (stop-server)
     {:status 404
