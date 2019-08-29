@@ -364,7 +364,9 @@
 
 (def l1 (lerp))
 
-(comment 
+(defn vct [& v] (vec (flatten v)))
+
+(comment
   (defn cx [frame]
     (list
 

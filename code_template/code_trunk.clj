@@ -5,7 +5,8 @@
             [sicmutils.env :refer :all :as env]
             [sicmutils.mechanics.lagrange :as lg]
             [sicmutils.numerical.minimize :as mn]
-            [abc.app-server :as app-server]))
+            [abc.app-server :as app-server]
+            [abc.writecode :as writecode]))
 
 (defn points->plot [paths x-axis-name y-axis-name]
   (let [coord-encoding (fn [coord] {:field coord :type "quantitative" :scale {:zero false}})
@@ -68,10 +69,9 @@
 (defn div [id html-data]
   (send-to-page (check-ids! id) :div html-data))
 
-(defmacro la-habra-code [] [:div])
-
 (defmacro la-habra [reagent-component-vector]
-  (app-server/write-la-habra reagent-component-vector)
+  ;;(app-server/write-la-habra reagent-component-vector)
+  (writecode/write-la-habra reagent-component-vector)
   (send-to-page "la-habra" :la-habra (str reagent-component-vector))
   nil)
 
