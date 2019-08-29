@@ -2,55 +2,52 @@
   (:require [clojure.java.io :as io]
             [clojure.walk :as w]))
 
-(w/prewalk #(if (number? %) % nil) '(u (lahatom 3)))
+(comment ;klm delete
+  (defn condition [b]
+    (and (seq? b) (#{'def 'defonce} (first b)))))
 
-(def matrix [[1 2 3]
-             [4 5 6]
-             [7 8 9]])
-(def matrix '(u (lahatom 3)))
-(w/prewalk #(if (number? %) (inc %) %) matrix)
-(w/postwalk #(if (number? %) (inc %)) matrix)
-
-(defn condition [b]
-  (and (seq? b) (#{'lahatom 'scatter} (first b))))
+(def symbol-set #{'def 'defonce})
 
 (defn filter-lahatom [u]
   (if (and (coll? u) (seq u))
-    (let [w (first u)]
-      (if (seq? w)
-        (condp = (first w)
-          'lahatom (conj (filter-lahatom (rest u))
-                         (list 'def (second w) (list 'atom (last w))))
-          'scatter (conj (filter-lahatom (rest u))
-                         (list 'defonce (second w) (conj (rest (rest  w)) 'scatter)))
-          (concat (filter-lahatom w) (filter-lahatom (rest u)) ))
-        (filter-lahatom (rest u))))
+    (let [fu (first u)
+          ru (rest u)]
+      (if (coll? fu)
+        (if (symbol-set (first fu))
+          (cons fu (filter-lahatom ru))
+          (concat (filter-lahatom fu) (filter-lahatom ru)))
+        (filter-lahatom ru)))
     '()))
 
-#_(filter-lahatom '[(lahatom aa 9) (when 4 (lahatom bb 4))])
+#_(filter-lahatom '[(def aa 9) (when 4 (defonce bb 4))])
 
+#_(defn replace-lahatom [u]
+    (w/prewalk #(if (and (coll? %) (symbol-set (first %)))
+                  (list 'deref (second %)) %) u))
 (defn replace-lahatom [u]
-  (w/prewalk #(if (condition %) (list 'deref (second %)) %) u))
+  (w/prewalk #(if (and (coll? %) (symbol-set (first %)))
+                (second %) %) u))
 
-#_(replace-lahatom '[(lahatom aa 9) (when 4 (lahatom bb 4))])
+#_(replace-lahatom '[(def aa 9) (when 4 (defonce bb 4))])
 
-(defn fu [a]
-  (reduce #(if (condition %2)
-             (conj %1 (list 'def (second %2) (list 'atom (last %2))))
-             %1)
-          [] a))
-(comment
-  (defn fo [a]
-    (map #(if (condition %)
-            (list 'deref (second %)) %)
-         a))
+(comment ;;klm delete
+  (defn fu [a]
+    (reduce #(if (condition %2)
+               (conj %1 (list 'def (second %2) (list 'atom (last %2))))
+               %1)
+            [] a))
+  (comment
+    (defn fo [a]
+      (map #(if (condition %)
+              (list 'deref (second %)) %)
+           a))
 
-  (defn fa [a]
-    (conj (fu a) (list 'defn 'cx ['frame] (conj (fo a) 'list)))))
+    (defn fa [a]
+      (conj (fu a) (list 'defn 'cx ['frame] (conj (fo a) 'list))))))
 
 (defn build-lahabra-code [a]
   (conj (vec (filter-lahatom a))
-        (list 'defn 'cx ['frame] (conj (seq (replace-lahatom a)) 'list))))
+        (list 'defn 'cx ['frame] (cons 'list (seq (replace-lahatom a))))))
 
 #_(build-lahatom-code '[(lahatom aa 9) (when 4 (lahatom bb 4))])
 

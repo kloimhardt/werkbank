@@ -451,8 +451,14 @@
 
       ))) ; cx end
 
+(def klmbb2 (->> (gen-shape mint oct) (style {:transform "translate(10vw, 30vh) scale(2) rotate(45deg)"}) (style {:mix-blend-mode "luminosity"}) (anim "woosh" "4s" "infinite") (draw) (atom)))
+(def klmbb4 (->> (gen-shape yellow oct) (style {:transform "translate(10vw, 30vh) scale(2) rotate(45deg)"}) (style {:mix-blend-mode "color-dodge"}) (anim "woosh" "2s" "infinite") (draw) (atom)))
+(defonce klmb (scatter 10 (->> (gen-circ navy 10 10 60) (draw))))
+(defonce klmd (scatter 10 (->> (gen-circ yellow 10 10 60) (style {:mix-blend-mode "screen"}) (draw))))
+(defonce klme (scatter 10 (->> (gen-circ yellow 10 10 60) (style {:mix-blend-mode "overlay"}) (draw))))
 (defonce klmf (scatter 10 (->> (gen-circ pink 10 10 60) (style {:mix-blend-mode "multiply"}) (draw))))
-(defn cx [frame] (list (when (nth-frame 6 frame) (deref klmf))))
+(def klmbb (->> (->> (gen-grid 40 28 {:col 40, :row 40} (gen-shape mint oct)) (map (fn [x] (style {:mix-blend-mode "difference"} x))) (map (fn [x] (anim "supercolor" (str (rand-int 100) "s") "infinite" x))) (map draw) (map (fn [x] (gen-group {:style {:transform-origin "center", :transform (str "rotate(" (rand-int 360) "deg)" "scale(60) translate(-20vh, -20vh)")}} x)))) (atom)))
+(defn cx [frame] (list (let [colors [midnight midnight midnight midnight yellow yellow white white]] (draw (style {:opacity 0.9} (gen-rect (val-cyc frame colors) 0 0 "100vw" "100%")))) (when-not (nth-frame 8 frame) (gen-line-grid midnight 4 80 80 {:col 20, :row 20})) (->> (gen-circ white (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) (val-cyc frame (vct [100 100 100 100 200 200 200 200] [200 50 50 50 50 50 200 200 200 200] [200 200 200 200 100 100 100 100]))) (draw) (when (nth-frame 4 frame))) (->> (gen-shape (pattern (:id navy-lines)) oct) (style {:transform (str "translate(70vw, 10vh) scale(" (val-cyc frame (vct [.5 .5 .5 .5 .5 .5] [1 1 1 1 1 1] [.9 .9 .9 .9 .9 .9])) ")")}) (draw) (when (nth-frame 4 frame))) (deref klmbb2) (deref klmbb4) (when (nth-frame 7 frame) (freak-out (clojure.core/deref width) (clojure.core/deref height) 4 1000 gray)) (when (nth-frame 6 frame) (deref klmb)) (when (nth-frame 8 frame) (deref klmd)) (when (nth-frame 6 frame) (deref klme)) (when (nth-frame 6 frame) (deref klmf)) (->> (gen-circ (pattern (:id white-dots)) (* 0.5 (clojure.core/deref width)) (* 0.5 (clojure.core/deref height)) 200) (draw) (when (nth-frame 1 frame))) (->> (gen-shape pink b2) (style {:transform "translate(20vw, 30vh) scale(2)"}) (draw)) (deref klmbb)))
 
 (when DEBUG
   (defonce collection (atom (cx 1))))
