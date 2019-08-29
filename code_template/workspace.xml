@@ -7,7 +7,7 @@
     <variable id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</variable>
     <variable id="P~}glbihS4~.%5v~MKN^">gen-line-grid</variable>
     <variable id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</variable>
-    <variable id=")0HS$JT!.Y|0Kv)=!x2a">freak-out</variable>
+    <variable id=".@rPEBSgI)D4D;!T[)U%">scatter</variable>
     <variable id="DTfm1!BT;3}@YQiXW8~[">colors</variable>
     <variable id="X3~E+l!)nus6={ybsp7o">style</variable>
     <variable id="TP/i_iyqyRLs1WblAq$x">frame</variable>
@@ -15,7 +15,6 @@
     <variable id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</variable>
     <variable id="C-{3!kg!d,8T):Y+Fq,L">gen-shape</variable>
     <variable id="8uB5,Xs8@B$(6PTh#/^;">lahatom</variable>
-    <variable id="T#(rbVrJfr%8O/SA/6cG">gray</variable>
     <variable id="lZ`8?UdL#1D*5|mt+R/H">gen-rect</variable>
     <variable id="i=q2s/w#wfpm$NY~l:p,">white</variable>
     <variable id="c^]VC4?ap4ym42[{k{!#">val-cyc</variable>
@@ -24,9 +23,15 @@
     <variable id="[yR*%18:`(Wrw29(yAs=">klmbb4</variable>
     <variable id=";[,m+-/]A/mCmnX40)82">vct</variable>
     <variable id="?b^qe~by.8@:8|HAPlI@">anim</variable>
+    <variable id=")0HS$JT!.Y|0Kv)=!x2a">freak-out</variable>
+    <variable id="?y9Z7X,+h/-#EEViY?=u">pink</variable>
     <variable id="5{WI`J|fyphJrT[4=_o:">str</variable>
     <variable id="7*%Z./IJC|2Kk9eX=x2y">mint</variable>
     <variable id="5eR{_KTXmay}8EGWa[W2">yellow</variable>
+    <variable id="T#(rbVrJfr%8O/SA/6cG">gray</variable>
+    <variable id="z[Q$)]1zh*(Li.o/`=A=">klmb</variable>
+    <variable id="hq7+S{$iSn%l[[Qs%Sc}">klmd</variable>
+    <variable id="KB2ys=*1U@.[~N!_RjuZ">navy</variable>
   </variables>
   <block type="idfuns-v-3" id="zo6P)lc=w#njrpZmGq2q" x="0" y="0">
     <field name="vegatex">mute-print</field>
@@ -744,14 +749,14 @@
                           </block>
                         </value>
                         <value name="arg-2">
-                          <block type="funs-h-3-cus" id="kBWeIrh/s$9Ng2a4ro[8" inline="false">
+                          <block type="funs-h-3-cus" id="kBWeIrh/s$9Ng2a4ro[8" inline="false" collapsed="true">
                             <field name="kopf" id="5~tiuoAoen^j9vxX+^,b">when</field>
                             <value name="args-2">
                               <block type="funs-h-3-cus" id="2F]c,;jO8SEDu2]{FAS1">
                                 <field name="kopf" id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</field>
                                 <value name="args-2">
                                   <block type="num" id="=m2|GUPzhOF!|A%e1Rku">
-                                    <field name="nummer">8</field>
+                                    <field name="nummer">6</field>
                                   </block>
                                 </value>
                                 <value name="args-3">
@@ -761,8 +766,348 @@
                                 </value>
                               </block>
                             </value>
+                            <value name="args-3">
+                              <block type="funs-h-4-cus" id="+[^(L`6wHu)doHYEm|L2" inline="false">
+                                <field name="kopf" id=".@rPEBSgI)D4D;!T[)U%">scatter</field>
+                                <value name="args-2">
+                                  <block type="variables_get" id="6le=Ri.=Rf];#VrEMI?`">
+                                    <field name="VAR" id="z[Q$)]1zh*(Li.o/`=A=">klmb</field>
+                                  </block>
+                                </value>
+                                <value name="args-3">
+                                  <block type="num" id="!]L31cTJSfbI|Of_+^=,">
+                                    <field name="nummer">10</field>
+                                  </block>
+                                </value>
+                                <value name="args-4">
+                                  <block type="funs-h-3-cus" id="l-cK9V%8g}txKS[dpC9U" inline="false">
+                                    <field name="kopf" id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</field>
+                                    <value name="args-2">
+                                      <block type="funs-h-5-cus" id="E{HxfvE#OQvI8GIh`p,=" inline="false">
+                                        <field name="kopf" id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</field>
+                                        <value name="args-2">
+                                          <block type="variables_get" id="BqL4k/L4cm1U0`#]AZ`c">
+                                            <field name="VAR" id="KB2ys=*1U@.[~N!_RjuZ">navy</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-3">
+                                          <block type="num" id="K77@Zk{]Dr!`:~_P=g!z">
+                                            <field name="nummer">10</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-4">
+                                          <block type="num" id="dQjOUd-Zq`TEHzCf740O">
+                                            <field name="nummer">10</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-5">
+                                          <block type="num" id="LNpG{xCPYU!S5)]:_dO{">
+                                            <field name="nummer">60</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="funs-h-2-cus" id="iW5%/glx[PY%-j;2ISnS">
+                                        <field name="kopf" id="-#HAWZ?K%hWuY}Vkq0H-">draw</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
                           </block>
                         </value>
+                        <next>
+                          <block type="pair" id="|%q0K1L6xRG@]IWLD}qB" inline="false">
+                            <value name="arg-1">
+                              <block type="funs-h-3-cus" id="deHD0mxgiy%B(:;GF[ht" inline="false" collapsed="true">
+                                <field name="kopf" id="5~tiuoAoen^j9vxX+^,b">when</field>
+                                <value name="args-2">
+                                  <block type="funs-h-3-cus" id="y]S!qH(gcm-ua`s/.!1w">
+                                    <field name="kopf" id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</field>
+                                    <value name="args-2">
+                                      <block type="num" id="oM1a9yINo!2zLikO`vaY">
+                                        <field name="nummer">8</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="variables_get" id="KfkQMeKEhheB^chEiZlZ">
+                                        <field name="VAR" id="TP/i_iyqyRLs1WblAq$x">frame</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="args-3">
+                                  <block type="funs-h-4-cus" id=":Qo2RtR7D;a_BF+fbI)t" inline="false">
+                                    <field name="kopf" id=".@rPEBSgI)D4D;!T[)U%">scatter</field>
+                                    <value name="args-2">
+                                      <block type="variables_get" id="AS(f:JJCRrh4_oEdQ,s4">
+                                        <field name="VAR" id="hq7+S{$iSn%l[[Qs%Sc}">klmd</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="num" id="h6yPVH%a)AOv6.#3[TGW">
+                                        <field name="nummer">10</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-4">
+                                      <block type="funs-h-4-cus" id="qq.1wcoeT=@9,,P?l%s;" inline="false">
+                                        <field name="kopf" id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</field>
+                                        <value name="args-2">
+                                          <block type="funs-h-5-cus" id="J#iHKI/X}/*l1=~Eff|y" inline="false">
+                                            <field name="kopf" id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</field>
+                                            <value name="args-2">
+                                              <block type="variables_get" id="U=|Ez1c$Q1,2}Y$Ln|@0">
+                                                <field name="VAR" id="5eR{_KTXmay}8EGWa[W2">yellow</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-3">
+                                              <block type="num" id="a!e(^LH`)9ZyT/YPh,/!">
+                                                <field name="nummer">10</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-4">
+                                              <block type="num" id="4P+p21`hm+X.4DoF)2Yv">
+                                                <field name="nummer">10</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-5">
+                                              <block type="num" id="1fo7]{X4?)t-$@q0hm`x">
+                                                <field name="nummer">60</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="args-3">
+                                          <block type="funs-h-2-cus" id="V1:77m1jK1?iC|%y2ee#">
+                                            <field name="kopf" id="X3~E+l!)nus6={ybsp7o">style</field>
+                                            <value name="args-2">
+                                              <block type="map" id="av5l!NVbE)Hk9tO=U+qa">
+                                                <field name="onlymap">{ }</field>
+                                                <statement name="map_data">
+                                                  <block type="pair" id="R{X2)[^,trbMnjY~`V_C" inline="false">
+                                                    <value name="arg-1">
+                                                      <block type="num_sym" id="}Un}4c$gUUeLzg=y^g`?">
+                                                        <field name="nummer">:mix-blend-mode</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="arg-2">
+                                                      <block type="text" id="RF/K!W(RN^a{(/t/$Cxj">
+                                                        <field name="dertext">screen</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="args-4">
+                                          <block type="funs-h-2-cus" id="AMhMr7Vvm11)oH!F7d$p">
+                                            <field name="kopf" id="-#HAWZ?K%hWuY}Vkq0H-">draw</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="arg-2">
+                              <block type="funs-h-3-cus" id="`*`OLcQ|@Onr76B(z|[@" inline="false" collapsed="true">
+                                <field name="kopf" id="5~tiuoAoen^j9vxX+^,b">when</field>
+                                <value name="args-2">
+                                  <block type="funs-h-3-cus" id="Mtc]QE#mXO:8/_]~I6Ho">
+                                    <field name="kopf" id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</field>
+                                    <value name="args-2">
+                                      <block type="num" id="gh@FmRqSOJ/afu2n/G%1">
+                                        <field name="nummer">6</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="variables_get" id=",Ey~mhc1,a}Yu+*,L*{0">
+                                        <field name="VAR" id="TP/i_iyqyRLs1WblAq$x">frame</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="args-3">
+                                  <block type="funs-h-4-cus" id="J(uUMFp|DCO%jq_tKpTh" inline="false">
+                                    <field name="kopf" id=".@rPEBSgI)D4D;!T[)U%">scatter</field>
+                                    <value name="args-2">
+                                      <block type="num_sym" id="dB9f`C[c/zDpyA+@@U7u">
+                                        <field name="nummer">klme</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="num" id="gmy#m)Fwf7TZr[#Cu(Vw">
+                                        <field name="nummer">10</field>
+                                      </block>
+                                    </value>
+                                    <value name="args-4">
+                                      <block type="funs-h-4-cus" id=":N8]]aq/m*ddH`zy}Y9D" inline="false">
+                                        <field name="kopf" id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</field>
+                                        <value name="args-2">
+                                          <block type="funs-h-5-cus" id="_=vI_#ZnI/M+aP#o#M}i" inline="false">
+                                            <field name="kopf" id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</field>
+                                            <value name="args-2">
+                                              <block type="variables_get" id="lgdLIdIetgt1`!XQa$!t">
+                                                <field name="VAR" id="5eR{_KTXmay}8EGWa[W2">yellow</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-3">
+                                              <block type="num" id="6:C43%}l3}nz=X[SE-jf">
+                                                <field name="nummer">10</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-4">
+                                              <block type="num" id=":CmWU+L9/m]=uKn=zi:7">
+                                                <field name="nummer">10</field>
+                                              </block>
+                                            </value>
+                                            <value name="args-5">
+                                              <block type="num" id="QG3zXTkc[QEdrT^zjYm0">
+                                                <field name="nummer">60</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="args-3">
+                                          <block type="funs-h-2-cus" id="Brqo;5RX@d6;uR]Z*uXD">
+                                            <field name="kopf" id="X3~E+l!)nus6={ybsp7o">style</field>
+                                            <value name="args-2">
+                                              <block type="map" id="`KIhGoKcjaxs4Luj5v$/">
+                                                <field name="onlymap">{ }</field>
+                                                <statement name="map_data">
+                                                  <block type="pair" id="5:a!OGu,G1xT#y-5m9|-" inline="false">
+                                                    <value name="arg-1">
+                                                      <block type="num_sym" id="fuK$G,nN_R!bx6-WO*:A">
+                                                        <field name="nummer">:mix-blend-mode</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="arg-2">
+                                                      <block type="text" id="`#o=ymQzB#NJjto)g!ZP">
+                                                        <field name="dertext">overlay</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="args-4">
+                                          <block type="funs-h-2-cus" id="c4*rZkKbZtD;]5xbu9}b">
+                                            <field name="kopf" id="-#HAWZ?K%hWuY}Vkq0H-">draw</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="pair" id="3rb?.7sjJ}1]F!f#VLRq" inline="false">
+                                <value name="arg-1">
+                                  <block type="funs-h-3-cus" id="bA?%4N[Rat22$PZBOA;`" inline="false" collapsed="true">
+                                    <field name="kopf" id="5~tiuoAoen^j9vxX+^,b">when</field>
+                                    <value name="args-2">
+                                      <block type="funs-h-3-cus" id="=@Nor8a[M_@]#bd8V](J">
+                                        <field name="kopf" id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</field>
+                                        <value name="args-2">
+                                          <block type="num" id="?f#S2kF})p,GYegk3ja_">
+                                            <field name="nummer">6</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-3">
+                                          <block type="variables_get" id="bD251.)w]m2fF?g2f;Rv">
+                                            <field name="VAR" id="TP/i_iyqyRLs1WblAq$x">frame</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="args-3">
+                                      <block type="funs-h-4-cus" id="BM-;=xs=4%EFGCLXkL$l" inline="false">
+                                        <field name="kopf" id=".@rPEBSgI)D4D;!T[)U%">scatter</field>
+                                        <value name="args-2">
+                                          <block type="num_sym" id="Gem5+UNpGj[rk%Uo68jl">
+                                            <field name="nummer">klmf</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-3">
+                                          <block type="num" id="rAdJhL@LKzzb@Pjl_-V8">
+                                            <field name="nummer">10</field>
+                                          </block>
+                                        </value>
+                                        <value name="args-4">
+                                          <block type="funs-h-4-cus" id="SztNBsycuLkrF`Qn6BlP" inline="false">
+                                            <field name="kopf" id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</field>
+                                            <value name="args-2">
+                                              <block type="funs-h-5-cus" id="5ME:97tYjGzv;K87j#+%" inline="false">
+                                                <field name="kopf" id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</field>
+                                                <value name="args-2">
+                                                  <block type="variables_get" id="uSiKXI;,HN^PA/3YiR-b">
+                                                    <field name="VAR" id="?y9Z7X,+h/-#EEViY?=u">pink</field>
+                                                  </block>
+                                                </value>
+                                                <value name="args-3">
+                                                  <block type="num" id="_CEbP6M}7y}YoTRViOQu">
+                                                    <field name="nummer">10</field>
+                                                  </block>
+                                                </value>
+                                                <value name="args-4">
+                                                  <block type="num" id="b}[yk3sn1V7Llh_qjFP+">
+                                                    <field name="nummer">10</field>
+                                                  </block>
+                                                </value>
+                                                <value name="args-5">
+                                                  <block type="num" id="O09!/oDIcePzRD6tix/S">
+                                                    <field name="nummer">60</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="args-3">
+                                              <block type="funs-h-2-cus" id="L|ag!~1yb)Z+$H$=$xgk">
+                                                <field name="kopf" id="X3~E+l!)nus6={ybsp7o">style</field>
+                                                <value name="args-2">
+                                                  <block type="map" id="Qz]0e.DeF`XO{v!dX^;z">
+                                                    <field name="onlymap">{ }</field>
+                                                    <statement name="map_data">
+                                                      <block type="pair" id="7O65)KNb(jkE~9}h#H*i" inline="false">
+                                                        <value name="arg-1">
+                                                          <block type="num_sym" id="|t,0ys$x@Q![r0KJU!B;">
+                                                            <field name="nummer">:mix-blend-mode</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="arg-2">
+                                                          <block type="text" id="``!;V(a)[Q/N*7p/wP!?">
+                                                            <field name="dertext">multiply</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </statement>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="args-4">
+                                              <block type="funs-h-2-cus" id="L+uU01OfV??2Z76;M_(6">
+                                                <field name="kopf" id="-#HAWZ?K%hWuY}Vkq0H-">draw</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>
@@ -774,70 +1119,107 @@
       </block>
     </value>
   </block>
-  <block type="funs-h-2-cus" id="b?`-jD/{lk?)6zTR5TmB" x="70" y="306">
+  <block type="funs-h-2-cus" id="b?`-jD/{lk?)6zTR5TmB" x="129" y="479">
     <field name="kopf" id="~;TYU?4pI]aQ5}WAMApI">la-habra</field>
     <value name="args-2">
-      <block type="vector" id="=b(1^SLt,exgYS?ssoy`">
+      <block type="vector" id="U?c,[kG!Qau^-+gX00,L">
         <field name="onlyvector">[ ]</field>
         <statement name="vec_data">
-          <block type="pair" id="0.SSM(kWOEckl_:^6d=a" inline="false">
+          <block type="pair" id="fJoxGp[g]?VaHz##3[;H" inline="false">
             <value name="arg-1">
-              <block type="funs-h-3-cus" id="amLY%yRK6L!LpifIIC}X" inline="false" collapsed="true">
+              <block type="funs-h-3-cus" id="YE()l}6+@b:nMtjckI3w" inline="false" collapsed="true">
                 <field name="kopf" id="5~tiuoAoen^j9vxX+^,b">when</field>
                 <value name="args-2">
-                  <block type="funs-h-3-cus" id="-Qv+*i8zpE_4m5h!WHTZ">
+                  <block type="funs-h-3-cus" id="]V/u9$lIUCW6d!s7@H/v">
                     <field name="kopf" id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</field>
                     <value name="args-2">
-                      <block type="num" id=":vYe0!gw0)G#A|z3qm|@">
-                        <field name="nummer">7</field>
+                      <block type="num" id="eivuEC!NP2S}%9$cln?l">
+                        <field name="nummer">6</field>
                       </block>
                     </value>
                     <value name="args-3">
-                      <block type="variables_get" id="Ysis)bt@-A$xn.okYPol">
+                      <block type="variables_get" id="nzzA]2xn$8o.0CsP{.1)">
                         <field name="VAR" id="TP/i_iyqyRLs1WblAq$x">frame</field>
                       </block>
                     </value>
                   </block>
                 </value>
                 <value name="args-3">
-                  <block type="funs-h-6-cus" id="IETB*v3jI.xPog,(#w{^" inline="false">
-                    <field name="kopf" id=")0HS$JT!.Y|0Kv)=!x2a">freak-out</field>
+                  <block type="funs-h-4-cus" id="{-_U31AK|F([[{mJ`Ji(" inline="false">
+                    <field name="kopf" id=".@rPEBSgI)D4D;!T[)U%">scatter</field>
                     <value name="args-2">
-                      <block type="num_sym" id="Ka,l^9lZi`J:v6GT%sJ8">
-                        <field name="nummer">@width</field>
+                      <block type="num_sym" id="yy0Yj|-JXKjhO04eEaEc">
+                        <field name="nummer">klmf</field>
                       </block>
                     </value>
                     <value name="args-3">
-                      <block type="num_sym" id="!N:i`#?wlzCHyDV*$UM2">
-                        <field name="nummer">@height</field>
+                      <block type="num" id="P$(]S.afi.mWcucCh^^^">
+                        <field name="nummer">10</field>
                       </block>
                     </value>
                     <value name="args-4">
-                      <block type="num" id="ir5futd7uB863J#_S5:y">
-                        <field name="nummer">4</field>
-                      </block>
-                    </value>
-                    <value name="args-5">
-                      <block type="num" id="Jy~On0zFxv+D5F6yFBBF">
-                        <field name="nummer">1000</field>
-                      </block>
-                    </value>
-                    <value name="args-6">
-                      <block type="variables_get" id="r;+GF2D0aUtD7xJ#7,B[">
-                        <field name="VAR" id="T#(rbVrJfr%8O/SA/6cG">gray</field>
+                      <block type="funs-h-4-cus" id="fFM5/r)9Pcn%lr};jRb5" inline="false">
+                        <field name="kopf" id="B-q,!EV3sVzzop%MnCc;">-&gt;&gt;</field>
+                        <value name="args-2">
+                          <block type="funs-h-5-cus" id="HUHayii5?/Ej,nS,f%o)" inline="false">
+                            <field name="kopf" id="s#$Y(/M~.Hc2,z$HsEns">gen-circ</field>
+                            <value name="args-2">
+                              <block type="variables_get" id="Tu[%GW6sDV0nx|PBgLk7">
+                                <field name="VAR" id="?y9Z7X,+h/-#EEViY?=u">pink</field>
+                              </block>
+                            </value>
+                            <value name="args-3">
+                              <block type="num" id="R(k?!ul*U.OBKy#M7Bm3">
+                                <field name="nummer">10</field>
+                              </block>
+                            </value>
+                            <value name="args-4">
+                              <block type="num" id="]yQNSLU}Kzz;XLO,D]uD">
+                                <field name="nummer">10</field>
+                              </block>
+                            </value>
+                            <value name="args-5">
+                              <block type="num" id="4j1E3(Z-}*H_bMVT@MW(">
+                                <field name="nummer">60</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="args-3">
+                          <block type="funs-h-2-cus" id="r,v2X?PfrpNn-bT)2Vcp">
+                            <field name="kopf" id="X3~E+l!)nus6={ybsp7o">style</field>
+                            <value name="args-2">
+                              <block type="map" id="{rbf}@(Gn@+,WfkU~f{h">
+                                <field name="onlymap">{ }</field>
+                                <statement name="map_data">
+                                  <block type="pair" id="Cb-^Gf}d,$H2CVmVZxh[" inline="false">
+                                    <value name="arg-1">
+                                      <block type="num_sym" id="4e1@eYxsNxx*`|Ct:g8F">
+                                        <field name="nummer">:mix-blend-mode</field>
+                                      </block>
+                                    </value>
+                                    <value name="arg-2">
+                                      <block type="text" id=";PL9.c5?a3`m;dhxUzVl">
+                                        <field name="dertext">multiply</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="args-4">
+                          <block type="funs-h-2-cus" id=";ut($[Q5X6BrdExW7gag">
+                            <field name="kopf" id="-#HAWZ?K%hWuY}Vkq0H-">draw</field>
+                          </block>
+                        </value>
                       </block>
                     </value>
                   </block>
                 </value>
               </block>
             </value>
-            <next>
-              <block type="pair" id="Ot,=0.1Znl-H)b.I9YPb" inline="false">
-                <next>
-                  <block type="pair" id="V`3=*8Pv{s)ka2hk?9~W" inline="false"/>
-                </next>
-              </block>
-            </next>
           </block>
         </statement>
       </block>

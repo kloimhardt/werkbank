@@ -12,15 +12,17 @@
 (w/postwalk #(if (number? %) (inc %)) matrix)
 
 (defn condition [b]
-  (and (seq? b) (= 'lahatom (first b))))
+  (and (seq? b) (#{'lahatom 'scatter} (first b))))
 
 (defn filter-lahatom [u]
   (if (and (coll? u) (seq u))
     (let [w (first u)]
       (if (seq? w)
-        (if (= 'lahatom (first w))
-          (conj (filter-lahatom (rest u))
-                (list 'def (second w) (list 'atom (last w))))
+        (condp = (first w)
+          'lahatom (conj (filter-lahatom (rest u))
+                         (list 'def (second w) (list 'atom (last w))))
+          'scatter (conj (filter-lahatom (rest u))
+                         (list 'defonce (second w) (conj (rest (rest  w)) 'scatter)))
           (concat (filter-lahatom w) (filter-lahatom (rest u)) ))
         (filter-lahatom (rest u))))
     '()))

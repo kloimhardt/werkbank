@@ -451,7 +451,8 @@
 
       ))) ; cx end
 
-(defn cx [frame] (list (when (nth-frame 7 frame) (freak-out (clojure.core/deref width) (clojure.core/deref height) 4 1000 gray))))
+(defonce klmf (scatter 10 (->> (gen-circ pink 10 10 60) (style {:mix-blend-mode "multiply"}) (draw))))
+(defn cx [frame] (list (when (nth-frame 6 frame) (deref klmf))))
 
 (when DEBUG
   (defonce collection (atom (cx 1))))
