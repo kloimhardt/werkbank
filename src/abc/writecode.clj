@@ -51,6 +51,9 @@
 
 #_(build-lahatom-code '[(lahatom aa 9) (when 4 (lahatom bb 4))])
 
+(defn copy-file [source-path dest-path]
+  (io/copy (io/file source-path) (io/file dest-path)))
+
 ;;modeled after app-server/write-xml
 (defn write-la-habra [la-habra-vector]
   (let [a (build-lahabra-code la-habra-vector)

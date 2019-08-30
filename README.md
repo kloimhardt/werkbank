@@ -28,6 +28,9 @@ to open a La Habra graphics area:
 
 localhost:3000/habra
 
-and short video:
+sample workspace: "sample_workspaces/workspace_habra.xml"
+demo video:
 
 https://kloimhardt.github.io/la_habra_blocks.mp4
+
+(If errors occur during la-habra live reloading, it helps to open dev.cljs.edn and increase :wait-time-ms from  999 to 5000 milliseconds.)
