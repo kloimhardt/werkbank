@@ -2,7 +2,6 @@
   <variables>
     <variable id="~;TYU?4pI]aQ5}WAMApI">la-habra</variable>
     <variable id="^J_T.`ok6obip{UGmM*[">do</variable>
-    <variable id=".iDp1/^n?d#|%uJ)+?fk">comment</variable>
     <variable id=":S6NGUjfqXhYZY/6n$.x">when-not</variable>
     <variable id="-#HAWZ?K%hWuY}Vkq0H-">draw</variable>
     <variable id="dTZGM?Vfiu0@7LI#Y/?)">nth-frame</variable>
@@ -212,7 +211,7 @@
             </value>
             <value name="arg-2">
               <block type="funs-h-3-cus" id="(nCF%L7+e-@8s914!{3l">
-                <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                 <value name="args-2">
                   <block type="text" id="XRogO({jC.dzy8FSBj7B">
                     <field name="dertext">black grid</field>
@@ -302,7 +301,7 @@
               <block type="pair" id="*tV`o7avX%1Yf;;/{XBI" inline="false">
                 <value name="arg-1">
                   <block type="funs-h-3-cus" id="j][Q7rX%-r:p8F_I.=Wd">
-                    <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                    <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                     <value name="args-2">
                       <block type="text" id="=.O_#e(eif5(KVD2|Tlm">
                         <field name="dertext">blinking grey circle</field>
@@ -412,7 +411,7 @@
                 </value>
                 <value name="arg-2">
                   <block type="funs-h-3-cus" id="~kM_7vXH,R(2P=/A+;9t">
-                    <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                    <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                     <value name="args-2">
                       <block type="text" id="MN+n~O!{[730nfU)9/ED">
                         <field name="dertext">grey oct</field>
@@ -547,7 +546,7 @@
                   <block type="pair" id=",YYRG^RH?*Tc-`g8W9Vh" inline="false">
                     <value name="arg-1">
                       <block type="funs-h-3-cus" id="Z0H3,?|=2!fg6GaI3K3%">
-                        <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                        <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                         <value name="args-2">
                           <block type="text" id="pr_c]mJfgGDm7a,abfh,">
                             <field name="dertext">moving green oct</field>
@@ -670,7 +669,7 @@
                     </value>
                     <value name="arg-2">
                       <block type="funs-h-3-cus" id="OJCfCHls0EAc,U*`wm{b">
-                        <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                        <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                         <value name="args-2">
                           <block type="text" id="]Jm9zmrp,a[9S.8:^Tm4">
                             <field name="dertext">fast moving yellow oct</field>
@@ -795,7 +794,7 @@
                       <block type="pair" id="OBgBW$5fU}9m[f(0E#j-" inline="false">
                         <value name="arg-1">
                           <block type="funs-h-3-cus" id="uE%!4HMz*lW[kwdyk:Gb">
-                            <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                            <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                             <value name="args-2">
                               <block type="text" id="[3kq%G4s4]C{`e,vq+,P">
                                 <field name="dertext">lots of points</field>
@@ -855,7 +854,7 @@
                         </value>
                         <value name="arg-2">
                           <block type="funs-h-3-cus" id="O+UPyH%@FI6$0[=*oeLh">
-                            <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                            <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                             <value name="args-2">
                               <block type="text" id="BeGy62gEk0]`$#WrvY|Q">
                                 <field name="dertext">blue circles</field>
@@ -947,7 +946,7 @@
                           <block type="pair" id="|%q0K1L6xRG@]IWLD}qB" inline="false">
                             <value name="arg-1">
                               <block type="funs-h-3-cus" id="uqaCQTy~vxd|PkPkP{Ot">
-                                <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                                <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                                 <value name="args-2">
                                   <block type="text" id="mLMRBJKkr4mr7xbZ$kXL">
                                     <field name="dertext">yellow circles -screen-</field>
@@ -1061,7 +1060,7 @@
                             </value>
                             <value name="arg-2">
                               <block type="funs-h-3-cus" id="Frt}K[IQ@K9DRPAXMx3`">
-                                <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                                <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                                 <value name="args-2">
                                   <block type="text" id="YQF,I2-//D8VUO[cAP^;">
                                     <field name="dertext">yellow circles -overlay-</field>
@@ -1177,7 +1176,7 @@
                               <block type="pair" id="3rb?.7sjJ}1]F!f#VLRq" inline="false">
                                 <value name="arg-1">
                                   <block type="funs-h-3-cus" id="*z%[[w*@xsHa}7Y)#j$Y">
-                                    <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                                    <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                                     <value name="args-2">
                                       <block type="text" id="Qui}/Xe3u]3C/(]AoFfA">
                                         <field name="dertext">red circles</field>
@@ -1291,7 +1290,7 @@
                                 </value>
                                 <value name="arg-2">
                                   <block type="funs-h-3-cus" id="my*T^~}ganP/zJ9v/}$(">
-                                    <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                                    <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                                     <value name="args-2">
                                       <block type="text" id="P+g_(^%zhn8.N*i/ueTw">
                                         <field name="dertext">grey dotted circle</field>
@@ -1451,7 +1450,7 @@
                                     </value>
                                     <value name="arg-2">
                                       <block type="funs-h-3-cus" id="7e)R@zvW0%1LV]1jXcTi">
-                                        <field name="kopf" id=".iDp1/^n?d#|%uJ)+?fk">comment</field>
+                                        <field name="kopf" id="^J_T.`ok6obip{UGmM*[">do</field>
                                         <value name="args-2">
                                           <block type="text" id="0sg.~SJ4A.@jQyKoHyBO">
                                             <field name="dertext">reddish art</field>
