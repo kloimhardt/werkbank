@@ -33,7 +33,7 @@
 (defn write-xml [xml]
   (let [a (x/parse xml)
         code (if (:dat a) (:dat a) [a])]
-    (println "in writexml" a)
+    (println "start writexml")
     (when (not (empty? a))
       (spit "code_template/workspace.xml" xml)
       (let [d "code_template/c_temp.clj"]
@@ -45,7 +45,8 @@
           (spit d x :append true))
         (spit d "\n" :append true)
         ;;(spit d '(print-text "_" "<") :append true)
-        (copy-file d "src/abc/code.clj")))))
+        (copy-file d "src/abc/code.clj")))
+    (println "end writexml")))
 
 (defn xml-resp [req]
   (let [xml (r/body-string req)

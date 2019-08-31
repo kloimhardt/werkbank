@@ -58,11 +58,19 @@
 (defn write-la-habra [la-habra-vector]
   (let [a (build-lahabra-code la-habra-vector)
         d "code_template/h_temp.clj"]
-    (spit d ";;this is a compter generated file")
-    (spit d (slurp "code_template/la_habra_trunk_1.cljs"))
-    (doseq [x a]
+    (do
+      (println "in write-la-habra, waiting 3 seconds")
+      (Thread/sleep 3000)
+      (println "start writing")
+      (spit d ";;this is a compter generated file")
+      (spit d (slurp "code_template/la_habra_trunk_1.cljs"))
+      (doseq [x a]
+        (spit d "\n" :append true)
+        (spit d x :append true))
       (spit d "\n" :append true)
-      (spit d x :append true))
-    (spit d "\n" :append true)
-    (spit d (slurp "code_template/la_habra_trunk_2.cljs") :append true)
-    (copy-file d "src/abc/la_habra.cljs")))
+      (spit d (slurp "code_template/la_habra_trunk_2.cljs") :append true)
+      (copy-file d "src/abc/la_habra.cljs")
+      (println "end write-la-habra, waiting 3 seconds")
+      (Thread/sleep 3000)
+      (println "continue")
+      )))
