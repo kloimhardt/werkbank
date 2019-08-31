@@ -1,4 +1,5 @@
 ^{:watch-dirs ["src"]
   :ring-handler abc.app-server/handler-figwheel
-  :wait-time-ms 999}
+  ;; :wait-time-ms 999
+}
 {:main abc.view}
