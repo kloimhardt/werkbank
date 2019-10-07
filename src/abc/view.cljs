@@ -1,7 +1,8 @@
 (ns ^:figwheel-always abc.view
   (:require [cljs.reader :as edn]
             [reagent.core :as r]
-            [abc.la-habra :as la-habra]))
+            [abc.la-habra :as la-habra]
+            [sicmutils-cljs.klmtest]))
 
 (defn make-websocket! [url write-fun]
   (.log js/console "attempting to connect websocket")

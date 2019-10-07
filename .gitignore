@@ -1,1 +1,6 @@
 /target
+/.cpcache
+/src/.DS_Store
+
+.DS_Store
+.nrepl-port

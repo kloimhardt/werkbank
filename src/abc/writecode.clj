@@ -60,7 +60,7 @@
         d "code_template/h_temp.clj"]
     (do
       (println "start write-la-habra")
-      (spit d ";;this is a compter generated file")
+      (spit d ";;this is a computer generated file")
       (spit d (slurp "code_template/la_habra_trunk_1.cljs"))
       (doseq [x a]
         (spit d "\n" :append true)

@@ -3,7 +3,17 @@
         compojure {:mvn/version "1.6.1"}
         hiccup {:mvn/version "1.0.5"}
         reagent {:mvn/version "0.8.0"}
-        net.littleredcomputer/sicmutils {:mvn/version "0.12.0-SNAPSHOT"}}
+        ;;net.littleredcomputer/sicmutils {:mvn/version "0.12.0-SNAPSHOT"}
+        org.clojure/tools.logging {:mvn/version "0.4.0"}
+        ;;hiccup "1.0.5"
+        com.google.guava/guava {:mvn/version "22.0"}
+        org.clojure/core.match {:mvn/version "0.3.0-alpha4"}
+        org.apache.commons/commons-math3 {:mvn/version "3.6.1"}
+        org.clojure/math.numeric-tower {:mvn/version "0.0.4"}
+        nrepl {:mvn/version "0.6.0"}
+        potemkin {:mvn/version "0.4.3"}
+        ;;sicmutils end
+        }
  :paths ["src" "ui_src" "target" "resources"]}
 
 ;;clojure -m figwheel.main --build dev
