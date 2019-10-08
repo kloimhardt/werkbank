@@ -265,6 +265,7 @@
 (defmethod g/mul
   [Long ::rational-function]
   [c ^RationalFunction r]
+  (println "klm rafu 1")
   (make (g/mul c (.u r)) (.v r)))
 
 (defmethod g/mul [BigInt ::rational-function]

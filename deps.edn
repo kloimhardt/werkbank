@@ -3,6 +3,7 @@
         compojure {:mvn/version "1.6.1"}
         hiccup {:mvn/version "1.0.5"}
         reagent {:mvn/version "0.8.0"}
+        org.clojure/tools.trace {:mvn/version "0.7.10"}
         ;;net.littleredcomputer/sicmutils {:mvn/version "0.12.0-SNAPSHOT"}
         org.clojure/tools.logging {:mvn/version "0.4.0"}
         ;;hiccup "1.0.5"
