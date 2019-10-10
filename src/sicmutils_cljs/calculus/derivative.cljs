@@ -251,3 +251,74 @@
   multiply an increment in the arguments, to produce the best linear estimate
   of the increment in the function value."
   (o/make-operator #(g/partial-derivative % []) 'D))
+(defn ^:private define-binary-operation
+  [generic-operation differential-operation]
+  (doseq [signature [[::differential ::differential]
+                     [:sicmutils-cljs.expression/numerical-expression ::differential]
+                     [::differential :sicmutils-cljs.expression/numerical-expression]]]
+    (defmethod generic-operation signature [a b] (differential-operation a b))))
+
+  (defn max-order-tag
+    "From each of the differentials in the sequence ds, find the highest
+  order term; then return the greatest tag found in any of these
+  terms; i.e., the highest-numbered tag of the highest-order term."
+    [ds]
+    (->> ds (mapcat #(-> % differential->terms last tags)) (apply max)))
+
+  (defn with-and-without-tag
+    "Split the differential into the parts with and without tag and return the pair"
+    [tag dx]
+    (let [{finite-terms nil infinitesimal-terms true}
+          (group-by #(tag-in? (tags %) tag) (differential->terms dx))]
+      [(-> infinitesimal-terms make-differential canonicalize-differential)
+       (-> finite-terms make-differential canonicalize-differential)]))
+
+  (defn ^:private tag-union
+    "The union of the sorted vectors ts and us."
+    [ts us]
+    (-> ts (concat us) sort dedupe vec))
+
+  (defn ^:private tag-intersection
+    "Intersection of sorted vectors ts and us."
+    [ts us]
+    (loop [ts ts
+           us us
+           result []]
+      (cond (empty? ts) result
+            (empty? us) result
+            :else (let [t (first ts)
+                        u (first us)
+                        c (compare t u)]
+                    (cond (= c 0) (recur (rest ts) (rest us) (conj result t))
+                          (< c 0) (recur (rest ts) us result)
+                          :else (recur ts (rest us) result))))))
+
+  (defn dx*dy
+    "Form the product of the differentials dx and dy."
+    [dx dy]
+    (make-differential
+      (for [[x-tags x-coef] (differential->terms dx)
+            [y-tags y-coef] (differential->terms dy)
+            :when (empty? (tag-intersection x-tags y-tags))]
+        [(tag-union x-tags y-tags) (g/* x-coef y-coef)])))
+
+  (defn ^:private binary-op
+    [f df:dx df:dy _kw]
+    (fn [x y]
+      (let [mt (max-order-tag [x y])
+            [dx xe] (with-and-without-tag mt x)
+            [dy ye] (with-and-without-tag mt y)
+            a (f xe ye)
+            b (if (and (number? dx) (zero? dx))
+                a
+                (dx+dy a (dx*dy dx (df:dx xe ye))))
+            c (if (and (number? dy) (zero? dy))
+                b
+                (dx+dy b (dx*dy (df:dy xe ye) dy)))]
+        (canonicalize-differential c))))
+
+  (def ^:private diff-+ (binary-op g/+ (constantly 1) (constantly 1) :plus))
+  (def ^:private diff-* (binary-op g/* (fn [_ y] y) (fn [x _] x) :times))
+
+(define-binary-operation g/mul diff-*)
+(define-binary-operation g/add diff-+)

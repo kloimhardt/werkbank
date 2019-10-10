@@ -34,6 +34,7 @@
        (defmulti ~f ~docstring v/argument-kind)
        (defmethod ~f [Keyword] [k#] ({:arity ~arity :name '~f} k#)))))
 
+(def-generic-function add 2)
 (def-generic-function mul 2)
 
 (defn ^:private bin* [a b]
@@ -47,7 +48,15 @@
 (defn * [& args]
   (reduce bin* 1 args))
 
+(defn ^:private bin+ [a b]
+  (cond (and (number? a) (number? b)) (+' a b)
+        (v/nullity? a) b
+        (v/nullity? b) a
+        :else (add a b)))
+
+(defn + [& args]
+  (reduce bin+ 0 args))
+
 (defn literal-number?
   [x]
-
   (= (:type x) ::x/numerical-expression))

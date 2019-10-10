@@ -53,3 +53,20 @@
         :else `(~'* ~a ~b)))
 
 (define-binary-operation g/mul mul)
+
+(def ^:private sum? (is-expression? '+))
+
+(defn add [a b]
+  (cond (and (number? a) (number? b)) (+ a b)
+        (number? a) (cond (v/nullity? a) b
+                          (sum? b) `(~'+ ~a ~@(operands b))
+                          :else `(~'+ ~a ~b))
+        (number? b) (cond (v/nullity? b) a
+                          (sum? a) `(~'+ ~@(operands a) ~b)
+                          :else `(~'+ ~a ~b))
+        (sum? a) (cond (sum? b) `(~'+ ~@(operands a) ~@(operands b))
+                       :else `(~'+ ~@(operands a) ~b))
+        (sum? b) `(~'+ ~a ~@(operands b))
+        :else `(~'+ ~a ~b)))
+
+(define-binary-operation g/add add)

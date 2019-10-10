@@ -2,17 +2,20 @@
   (:refer-clojure :rename {zero? core-zero?})
   (:require [sicmutils-cljs.calculus.derivative :as d]
             [sicmutils-cljs.function-a]
-            #_[sicmutils-cljs.numsymb]
-            #_[sicmutils-cljs.generic]))
+            [sicmutils-cljs.numsymb]
+            [sicmutils-cljs.generic :as g]))
 
 (enable-console-print!)
-(defn a [t] t)
-(defn b [a] (d/D a))
-(println "klm scr test -------- " (b a))
-(println "klm output2 -------- " ((d/D a) 1))
+(comment
+  (defn a [t] t)
 
-(type 's)
-(isa? 's Symbol)
-(type :k)
-(isa? :k Keyword)
-(isa? 3 number)
+  (println ((d/D a) 1) 1)
+  (println (g/* 3 4) 2)
+  (println (g/* 3 'x) 3)
+  (println (g/+ 3 4) 4)
+  (println (g/+ 3 'x) 5)
+  (println (g/+ (g/* 2 'x) 3) 6))
+
+(defn b [t]
+  (g/+ (g/* t t) 3))
+(println ((d/D b) 't))
