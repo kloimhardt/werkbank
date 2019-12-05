@@ -91,3 +91,6 @@
 
 (defn ^:export starthabra []
   (r/render [la-habra/drawing] (.getElementById js/document "app")))
+
+(defn ^:export xmltocode []
+  (println "klm diiii"))

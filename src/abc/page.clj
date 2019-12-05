@@ -65,7 +65,7 @@
          [:script {:src "vega.js" :type "text/javascript"}]
          [:script {:src "vega-lite.min.js" :type "text/javascript"}]
          [:script {:src "vega-embed.min.js" :type "text/javascript"}]
-         (when (= mode :wspace)
+         (when (#{:wspace :int} mode)
            [:iframe {:src "/abc.html" :id "iframeid" :name "klmiframe" :height iframeheight :width "100%"}])
          ;;to acess variables in iframe
          ;;document.getElementById("iframeid").contentWindow.workspace;
@@ -74,6 +74,7 @@
          [:script {:src "/cljs-out/dev-main.js" :type "text/javascript"}]
          [:script {:type "text/javascript"}
           ({:wspace "abc.view.startwspace();"
+            :int "abc.view.xmltocode();"
             :vegatex "abc.view.startvegatex();"
             :habra "abc.view.starthabra();"}
            mode)]]])}))

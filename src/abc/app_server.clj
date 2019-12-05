@@ -66,6 +66,7 @@
   (compojure/GET "/wspace" request (page/view :wspace))
   (compojure/GET "/vegatex" request (page/view :vegatex))
   (compojure/GET "/habra" request (page/view :habra))
+  (compojure/GET "/int" request (page/view :int))
   (compojure/GET "/ws" request (ws-handler request))
   (route/resources "/")
   (route/not-found "Server is started, but page not found"))
