@@ -103,11 +103,6 @@
 (print-text "reset-7236491003" "") ;;clear plot area in front-end
 ;;(print-text ">" "")
 ;;----------------------------------------------------------------------
-(defn f [x] (* x x))
-(defn b [a] (D a))
-((b f) 1)
-
-((D f) 1)
 (def Initial-hight-of-pivot (quote h))
 (def Mass (quote m))
 (def g (quote g))
