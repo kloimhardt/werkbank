@@ -1,10 +1,14 @@
 # werkbank
 
+Look at the demo video:
+
+https://kloimhardt.github.io/driven_pendulum.mp4
+
 to build, enter the following shell command:
 
     ./startcljblocks.sh
 
-to start the server, enter the following url in browser:
+to start the server, enter the following url in browser (ignore "Adress already in use" error messages if any):
 
 localhost:9500/http-kit
 
@@ -18,9 +22,6 @@ localhost:3000/vegatex
 
 to open a sample in the workspace press the "Choose file" button and open "sample_workspaces/workspace_full.xml"
 
-We have a demo video:
-
-https://kloimhardt.github.io/driven_pendulum.mp4
 
 There is also a draft for a paper (in German) "ga_pro_kla_mech.pdf" in the "/docs" directory
 
