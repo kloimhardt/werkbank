@@ -12,7 +12,9 @@ to start the server, enter the following url in browser (ignore "Adress already 
 
 localhost:9500/http-kit
 
-to open the workspace, enter the following url in browser:
+## SICMUtils Example
+
+to run a workspace based on the library littleredcomputer/sicmutils, enter the following url in browser:
 
 localhost:3000/abc.html
 
@@ -25,11 +27,12 @@ to open a sample in the workspace press the "Choose file" button and open "sampl
 
 There is also a draft for a paper (in German) "ga_pro_kla_mech.pdf" in the "/docs" directory
 
-to open a La Habra graphics area:
+## La Habra Example
+
+To run a workspace based on the library sarahgp/la-habra, open "sample_workspaces/workspace_habra.xml" and open the graphics area:
 
 localhost:3000/habra
 
-sample workspace: "sample_workspaces/workspace_habra.xml"
 demo video:
 
 https://kloimhardt.github.io/la_habra_blocks.mp4
