@@ -103,15 +103,3 @@
 (print-text "reset-7236491003" "") ;;clear plot area in front-end
 ;;(print-text ">" "")
 ;;----------------------------------------------------------------------
-(def Initial-hight-of-pivot (quote h))
-(def Mass (quote m))
-(def g (quote g))
-(def f (literal-function (quote f)))
-(defn hight-of-pivot [t] (+ Initial-hight-of-pivot (f t)))
-(defn hight-of-end [t y] (- (hight-of-pivot t) y))
-(defn V [t y] (* Mass g (hight-of-end t y)))
-(defn K [t xdot ydot] (* 1/2 Mass (+ (square xdot) (square (+ ydot ((D hight-of-pivot) t))))))
-(defn L-pendulum [[t [x y] [xdot ydot]]] (- (K t xdot ydot) (V t y)))
-(mute-tex "rec" (((Lagrange-equations L-pendulum) (up (literal-function (quote x)) (literal-function (quote y)))) (quote t)))
-(defn rectangular<-phi [[t [phi]]] (up (* (quote l) (sin phi)) (* (quote l) (cos phi))))
-(tex "phi" (((Lagrange-equations (compose L-pendulum (F->C rectangular<-phi))) (up (literal-function (quote phi)))) (quote t)))
