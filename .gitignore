@@ -1,6 +1,8 @@
 /target
 /.cpcache
 /src/.DS_Store
+/code_template/c_temp.clj
+/code_template/workspace.clj
 
 .DS_Store
 .nrepl-port

@@ -1,6 +1,5 @@
 (ns abc.xmlparse
-  (:require [clojure.java.io :as io]
-            [clojure.xml :as xml]))
+  (:require [clojure.xml :as xml]))
 
 (defn l-block [x]
   (let [type (get-in x [:attrs :type])
@@ -14,28 +13,12 @@
       "funs"  {:fun s}
       "list" {:list s}
       "idfu" {:idfun [s t]}
-      ;; "cusfuns" {:fun s}
       "pair" {:pair "p"}
       "map_" {:map "m"}
       "vect" {:vec "v"}
       "let_" {:let "l"}
       "args" {:args "args"}
-      ;; "args-1" {:args "args-1"}
       {})))
-
-(comment
-  (defn level1b-depr [x]
-    (if (map? x)
-      (if (#{:block :xml :value :next :statement} (:tag x))
-        (let [a (filter #(not= {} %) (mapv level1b (:content x)))
-              b (cond
-                  (#{:block} (:tag x)) (l-block x)
-                  :else {})]
-          (if (empty? a)
-            b
-            (assoc b :dat (vec a))))
-        {})
-      x)))
 
 ;;generate EDN with the keywords coded in l-block + :dat
 (defn level1b [x]
@@ -68,11 +51,9 @@
         (assoc x :dat [(a 0) {:args "args-1" :dat [(a 1)]} (a 2)])
         (and (= (:fun x) "fn") (:var (a 0)))
         (assoc x :dat [{:args "args-1" :dat [(a 0)]} (a 1)])
-        :else
-        (assoc x :dat a)))))
+        :else (assoc x :dat a)))))
 
-;;generate code
-(defn level4a [x]
+(defn level4a [x] ;;generate code
   (let [a (mapv level4a (:dat x))]
     (cond
       (:var x) (symbol (:var x))
@@ -91,19 +72,9 @@
       :else  (assoc x :dat a))))
 
 (defn parse [xml-str]
-  (def xml-str xml-str)
   (-> (java.io.ByteArrayInputStream. (.getBytes xml-str))
       xml/parse
       level1b
       level2a
       level3a
-      level4a
-      ))
-
-(comment
-  (level4a
-    (level3a
-      (level2a
-        (level1b
-          (xml/parse
-            (java.io.ByteArrayInputStream. (.getBytes xml-str))))))))
+      level4a))
