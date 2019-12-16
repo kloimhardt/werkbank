@@ -2,6 +2,8 @@
 
 Translates visual Blockly tiles into executable Clojure code.
 
+![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
+
 There is a demo video:
 
 https://kloimhardt.github.io/driven_pendulum.mp4
