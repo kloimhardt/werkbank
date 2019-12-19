@@ -38,8 +38,11 @@ localhost:3000/vegatex
 
 to open a sample workspace press the "Choose file" button and open "sample_workspaces/workspace_full.xml"
 
-
 There is also a draft for a paper (in German with English abstract) "ga_pro_kla_mech.pdf" in the "/latex" directory
+
+After the initial fun with Blocks, you may think that modelling via text is faster. In that case you can switch to the according [Jupyter Notebook](https://github.com/kloimhardt/sicmutils/blob/master/jupyter/book-examples-lab.ipynb) or...
+
+Start text-based modelling in SICMUtils without any local installation and remix the according [Nextjournal Notebook](https://nextjournal.com/SICM_in_Clojure/structure-and-interpretation-of-classical-mechanics-in-clojure).
 
 ## La Habra Example
 
