@@ -39,7 +39,7 @@ localhost:3000/vegatex
 to open a sample workspace press the "Choose file" button and open "sample_workspaces/workspace_full.xml"
 
 
-There is also a draft for a paper (in German) "ga_pro_kla_mech.pdf" in the "/docs" directory
+There is also a draft for a paper (in German with English abstract) "ga_pro_kla_mech.pdf" in the "/latex" directory
 
 ## La Habra Example
 

@@ -3,6 +3,10 @@
 /src/.DS_Store
 /code_template/c_temp.clj
 /code_template/workspace.xml
+/latex/*
+!/latex/bilder/*
+!/latex/ga_pro_kla_mech.tex
+!/latex/ga_pro_kla_mech.pdf
 
 .DS_Store
 .nrepl-port
