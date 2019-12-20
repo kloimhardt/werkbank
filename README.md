@@ -4,9 +4,11 @@ Translate visual Blockly tiles into executable Clojure code. Show the power of L
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
 
-Look at the [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) which shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression. Only remarkebly few blocks are needed to use the full library:
+Look at the [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) which shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression. Only remarkebly few building-blocks are needed to use the full library:
 
 ![screenshotmenus](https://kloimhardt.github.io/werkbank_menus.png)
+
+To be sure (as any Clojurist will quickly see), the number of building-blocks could be reduced further without restricting access to the library. But the point of this project is to present the power of the language and thus to choose instructive building-blocks, not a minimal set.
 
 The project runs (and is meant to run) locally in dev mode with figwheel. On pressing the "run" button, a file containing Clojure code is generated and executed, just as if it were typed and saved using a keyboard. So there is no restriction to any specific library, anything can be added to deps.edn and used like in a normal project. At a certain point, a programmer even can forget about Blockly and continue hacking the code in one's favourite editor.
 
