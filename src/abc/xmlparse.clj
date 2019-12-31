@@ -11,6 +11,7 @@
       "sym_" {:sym s}
       "text" {:text s}
       "funs"  {:fun s}
+      "inli" {:inli s}
       "list" {:list s}
       "idfu" {:idfun [s t]}
       "pair" {:pair "p"}
@@ -61,6 +62,7 @@
       (:sym x) (symbol (:sym x))
       (:text x) (:text x)
       (:fun x) (cons (symbol (:fun x)) a)
+      (:inli x) (cons (symbol (:inli x)) a)
       (:list x) (apply list a)
       (:idfun x) (let [v (:idfun x)] (cons (symbol (v 0)) (cons (v 1) a)))
       (:pair x) a

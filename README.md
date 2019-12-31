@@ -80,3 +80,7 @@ To be sure, only the left version sould be used, I think the right one is confus
 Such an omission, while cursed, is made possible by this certain Lisp super-power which is often termed with slogans as "Lisp has no Syntax", "Homoiconicity" or "Code is Data". I think this super-power should not be mentioned when Clojure is presentd or described. It is better to show the normal power of Clojure, namely its lean Syntax for accessing powerful libraries.
 
 So, the chosen building blocks move away from the code-is-data paradigm. Because they allow to represent the same edn-vector in two different graphical ways. This means that in the workspace examples a choice is made, a choice for a certain (and hopefully gentle) Syntax to represent Clojure-code.
+
+In the same vain, infix notation for adding (multiplication etc.) of numbers is introduced. Maybe it is best to explain infix notation like shown below:
+
+![screenshot infix](https://kloimhardt.github.io/infix.png)
