@@ -1,0 +1,25 @@
+{
+  "name": "werkbank",
+  "version": "1.0.0",
+  "description": "Translate visual Blockly tiles into executable Clojure code. Show the power of Lisp without parentheses.",
+  "main": "index.js",
+  "dependencies": {
+    "blockly": "^3.20200123.1"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.8.83"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kloimhardt/werkbank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kloimhardt/werkbank/issues"
+  },
+  "homepage": "https://github.com/kloimhardt/werkbank#readme"
+}

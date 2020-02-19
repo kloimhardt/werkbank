@@ -1,0 +1,21 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src"]
+
+ :dependencies
+ [[binaryage/devtools "0.9.10"]
+  [borkdude/sci "0.0.13-alpha.11"]
+  [funcool/tubax "0.2.0"]]
+
+ :dev-http {8000 {:roots ["target_shadow/public" "resources/public" "node_modules"]}}
+
+ :builds
+ {:block-cljs {:target :browser
+               :output-dir "target_shadow/public/cljs-out"
+               :asset-path "/cljs-out"
+               :modules {:dev-main {:entries [block-cljs.view]}}}}}
+
+;; npm init
+;; npm install
+;; shadow-cljs watch block-cljs
+;; shadow-cljs compile block-cljs

@@ -9,5 +9,9 @@
 /latex/ga_pro_kla_mech.out
 /latex/ga_pro_kla_mech.synctex.gz
 
+.shadow-cljs/
+node_modules/
+target_shadow/
+
 .DS_Store
 .nrepl-port

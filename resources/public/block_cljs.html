@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<body>
+    <!--
+    <script src="/blockly/blockly_compressed.js"></script>
+    <script src="/blockly/blocks_compressed.js"></script>
+    <script src="/blockly/msg/js/en.js"></script>
+    -->
+        <xml id="toolbox" style="display: none">
+        <category name="Function">
+            <block type="funs-h-2-cus"></block>
+            <block type="list-h-2"></block>
+            <block type="funs-h-3-cus"></block>
+            <block type="funs-h-4-cus"></block>
+            <block type="funs-h-5-cus"></block>
+            <block type="funs-h-6-cus"></block>
+            <block type="funs-h-7-cus"></block>
+        </category>
+       <category name="Data">
+            <block type="num"></block>
+            <block type="inli-h-3"></block>
+            <block type="num_sym"></block>
+            <block type="text"></block>
+            <block type="vector"></block>
+            <block type="pair"></block>
+            <block type="let"></block>
+            <block type="map"></block>
+        </category>
+        <category name="Defn">
+            <block type="funs-v-4-defn"></block>
+            <block type="funs-v-3-fn"></block>
+            <block type="funs-v-3-def"></block>
+            <block type="args-1"></block>
+            <block type="args-2"></block>
+            <block type="args-3"></block>
+            <block type="args-4"></block>
+            <block type="args-5"></block>
+            <block type="args-6"></block>
+        </category>
+        <category name="Print">
+            <block type="idfuns-v-3"></block>
+            <block type="idfuns-v-4"></block>
+        </category>
+        <category name="SICM">
+            <block type="sym_funs-h-2"></block>
+            <block type="funs-h-2"></block>
+            <block type="funs-h-3"></block>
+            <block type="funs-h-4"></block>
+            <block type="funs-h-5"></block>
+            <block type="funs-h-6"></block>
+        </category>
+        <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
+    </xml>
+
+    <div id="blocklyDiv" style="height: 96%"></div>
+    <script src="./sicmblocks_fun.js"></script>
+    <script src="/cljs-out/dev-main.js"></script>
+    <script src="./buttonfunctions.js"></script>
+
+    <button onClick="block_cljs.view.startsci();">Run</button>
+
+<!--
+    <script>
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox'),
+            media: "/blockly/media/"
+        });
+    </script>
+
+    <button onclick="shadeBlocks();">Shade Blocks</button>
+    <button onclick="unshadeBlocks();">Unshade Blocks</button>
+    <button onClick="saveXML();">Save XML</button>
+    <input type="file" id="fileToLoad">
+    <script>
+        document.getElementById("fileToLoad").addEventListener("change", loadFileAsText);
+    </script>
+    -->
+
+</body>
+</head>
+
+</html>
