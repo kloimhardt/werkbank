@@ -4,7 +4,9 @@
   "description": "Translate visual Blockly tiles into executable Clojure code. Show the power of Lisp without parentheses.",
   "main": "index.js",
   "dependencies": {
-    "blockly": "^3.20200123.1"
+    "blockly": "^3.20200123.1",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
   },
   "devDependencies": {
     "shadow-cljs": "^2.8.83"

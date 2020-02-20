@@ -3,7 +3,9 @@
  ["src"]
 
  :dependencies
- [[binaryage/devtools "0.9.10"]
+ [[thheller/shadow-cljsjs "0.0.21"]
+  [reagent "0.9.1"]
+  [binaryage/devtools "0.9.10"]
   [borkdude/sci "0.0.13-alpha.11"]
   [funcool/tubax "0.2.0"]]
 

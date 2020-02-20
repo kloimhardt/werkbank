@@ -982,7 +982,7 @@ Blockly.Blocks['num_sym']= {
                 {
                     "type": "field_input",
                     "name": "nummer",
-                    "text": "\'m"
+                    "text": ":kw"
                 }
             ],
             "output": null,

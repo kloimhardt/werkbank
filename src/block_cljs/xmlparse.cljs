@@ -1,6 +1,4 @@
-(ns block-cljs.xmlparse
-  (:require [tubax.core :as xml]
-            [goog.string :as gstring]))
+(ns block-cljs.xmlparse)
 
 (defn l-block [x]
   (let [type (get-in x [:attributes :type])
@@ -59,9 +57,9 @@
   (let [a (mapv level4a (:dat x))]
     (cond
       (:var x) (symbol (:var x))
-      (:num x) (gstring/toNumber (:num x))
+      (:num x) (symbol (:num x))
       (:sym x) (symbol (:sym x))
-      (:text x) (:text x)
+      (contains? x :text) (if-let [t (:text x)] t " ")
       (:fun x) (cons (symbol (:fun x)) a)
       (:inli x) (cons (symbol (:inli x)) a)
       (:list x) (apply list a)
@@ -74,10 +72,10 @@
       (empty? a) (dissoc x :dat)
       :else  (assoc x :dat a))))
 
-(defn parse [xml-str]
-  (-> xml-str
-      xml/xml->clj
+(defn parse [edn]
+  (-> edn
       level1b
       level2a
       level3a
-      level4a))
+      level4a
+      ))

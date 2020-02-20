@@ -53,29 +53,14 @@
         <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
     </xml>
 
-    <div id="blocklyDiv" style="height: 96%"></div>
+    <button onClick="block_cljs.view.startsci();">Run</button>
+    <div id="blocklyDiv" style="height: 60%"></div>
     <script src="./sicmblocks_fun.js"></script>
     <script src="/cljs-out/dev-main.js"></script>
-    <script src="./buttonfunctions.js"></script>
+    <div id="out"></div>
+    <script>block_cljs.view.output();</script>
 
-    <button onClick="block_cljs.view.startsci();">Run</button>
 
-<!--
-    <script>
-        var workspace = Blockly.inject('blocklyDiv', {
-            toolbox: document.getElementById('toolbox'),
-            media: "/blockly/media/"
-        });
-    </script>
-
-    <button onclick="shadeBlocks();">Shade Blocks</button>
-    <button onclick="unshadeBlocks();">Unshade Blocks</button>
-    <button onClick="saveXML();">Save XML</button>
-    <input type="file" id="fileToLoad">
-    <script>
-        document.getElementById("fileToLoad").addEventListener("change", loadFileAsText);
-    </script>
-    -->
 
 </body>
 </head>
