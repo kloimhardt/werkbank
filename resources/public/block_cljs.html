@@ -7,6 +7,7 @@
     <script src="/blockly/blocks_compressed.js"></script>
     <script src="/blockly/msg/js/en.js"></script>
     -->
+
         <xml id="toolbox" style="display: none">
         <category name="Function">
             <block type="funs-h-2-cus"></block>
@@ -54,7 +55,9 @@
     </xml>
 
     <button onClick="block_cljs.view.startsci();">Run</button>
+    <script source="./tutorials.js"></script>
     <div id="blocklyDiv" style="height: 60%"></div>
+    <input id="tutorial_no" type="text" value=0> <!-- 0 also set in reagent state -->
     <script src="./sicmblocks_fun.js"></script>
     <script src="/cljs-out/dev-main.js"></script>
     <div id="out"></div>
