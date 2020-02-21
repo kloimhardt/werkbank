@@ -1,5 +1,4 @@
 var initblocks = function(Blockly) {
-
 Blockly.Blocks["funs-v-3"]= {
     init: function() {this.jsonInit(
         {"type": "funs-v-3",
@@ -982,7 +981,7 @@ Blockly.Blocks['num_sym']= {
                 {
                     "type": "field_input",
                     "name": "nummer",
-                    "text": ":kw"
+                    "text": "\'m"
                 }
             ],
             "output": null,
