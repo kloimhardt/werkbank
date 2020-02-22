@@ -8,12 +8,15 @@
    [block-cljs.xmlparse :as edn->code]
    [block-cljs.tutorials-a :as t-a]
    [block-cljs.tutorials-b :as t-b]
+   [block-cljs.tutorials-c :as t-c]
+   [clojure.walk :as w]
    [tubax.core :as sax]
-   [reagent.core :as r]))
+   [reagent.core :as r]
+   [zprint.core :as zp]))
 
 (def menu true)
 
-(def tutorials (vec (concat t-a/vect t-b/vect)))
+(def tutorials (vec (concat t-a/vect t-b/vect t-c/vect)))
 
 (defn load-workspace [xml-text]
   (.. blockly/Xml
@@ -32,9 +35,10 @@
                 (< -1 idx-old (count tutorials)) idx-old
                 :else 0)
           tut (get tutorials idx)]
-      (load-workspace tut #_(if (seq tut) (get tut 0) tut))
+      (load-workspace tut)
       (gforms/setValue el idx)
-      (reset! state {:stdout nil :result nil :code nil :tutorial-no idx}))))
+      (reset! state
+              {:stdout nil :result nil :code nil :tutorial-no idx}))))
 
 (defonce workspace
   (do
@@ -48,20 +52,9 @@
 
 (def thexml (atom ""))
 
-(defn print-code [edn-code]
+(defn code->break-str [width edn-code]
   (if-let [code  (:dat edn-code)]
-    (doseq [c code]
-      (println (pr-str c)))
-    (println (pr-str edn-code))))
-
-(defn code->break-str [edn-code]
-  (if-let [code  (:dat edn-code)]
-    (apply str (interpose "\n" (map pr-str code)))
-    (pr-str edn-code)))
-
-(defn code->str [edn-code]
-  (if-let [code  (:dat edn-code)]
-    (apply pr-str code)
+    (apply str (interpose "\n" (map #(zp/zprint-str % width) code)))
     (pr-str edn-code)))
 
 (defn my-str [e]
@@ -70,69 +63,99 @@
       (apply str (interpose " " (map f e)))
       (f e))))
 
+(defn part-str [width s]
+  (apply str
+         (interpose "\n"
+                    (map (partial apply str)
+                         (partition-all width s)))))
+
+(defn augment-code [edn-code]
+  (let [b (filter #{'vec-rest} (flatten (w/postwalk #(if (map? %) (vec %) %) edn-code)))]
+    (def edn-code edn-code)
+    (if (and (seq b) (get-in edn-code [:code :dat]))
+      (update-in edn-code [:code :dat] #(concat ['(defn vec-rest
+                                                    "this function added by Blockly parser"
+                                                    [x]
+                                                    (if (coll? x)
+                                                      (vec (rest x))
+                                                      (rest x)))] %))
+      edn-code)))
+
 (defn ^:export startsci []
   (let [xml-str (->> (.-mainWorkspace blockly)
                      (.workspaceToDom blockly/Xml)
                      (.domToPrettyText blockly/Xml))
-        edn (sax/xml->clj xml-str)
-        edn-code (if (seq (:content edn))
-                   (edn->code/parse edn) "")
+        edn-xml (sax/xml->clj xml-str)
+        edn-code (if (seq (:content edn-xml))
+                   (try {:code (edn->code/parse edn-xml)}
+                        (catch js/Error e {:error (.-message e)})) "")
+        aug-edn-code (augment-code edn-code)
         theout (atom "")
+        str-width 40
         bindings {'println (fn [& x]
                              (swap! theout str (my-str x) "\n") nil)
                   'print (fn [& x]
                            (swap! theout str (my-str x)) nil)}
-        erg (try (sci/eval-string (code->break-str edn-code)
+        erg (try (sci/eval-string (code->break-str str-width
+                                                   (:code aug-edn-code))
                                   {:bindings bindings})
                  (catch js/Error e (.-message e)))]
     (reset! thexml xml-str)
     (when menu
-      (println "edn: " edn)
+      ;;(println "edn: " edn)
       (println "-------")
-      (print-code edn-code)
+      (print (code->break-str str-width (:code aug-edn-code)))
+      (println (:error aug-edn-code))
       (println "-------")
       (when @theout (println @theout))
       (println erg))
     (swap! state assoc
-           :stdout @theout
-           :result (my-str erg)
-           :code (code->break-str edn-code))))
+           :stdout #_(part-str str-width) @theout
+           :result (part-str str-width (my-str erg))
+           :code (if (:error aug-edn-code)
+                   "Cannot even parse the blocks"
+                   (code->break-str str-width (:code aug-edn-code))))))
 
 (defn tutorials-comp []
-  [:div
-   [:button {:on-click (tutorial-fu dec)} "<"]
-   [:button {:on-click (tutorial-fu inc)} ">"]])
+[:div
+ [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
+ [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
+ " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
+ [:button {:on-click (tutorial-fu dec)} "<"]
+ [:button {:on-click (tutorial-fu inc)} ">"]
+ ]
+)
 
 (defn out-comp []
-  (r/create-class
-    (merge
-      {:reagent-render
-       (fn []
-         [:div
-          (when menu
-            [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
-                     :read-only true}])
-          [tutorials-comp]
-          (when (:result @state)
-            [:table {:style {:width "100%"}}
-             [:thead
-              [:tr {:align :left}
-               [:th {:style {:width "50%"}} "Output"]
-               (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
-             [:tbody
-              [:tr
-               [:td {:align :top}
-                (when-let [so (:stdout @state)]
-                  [:pre so])
-                [:pre (:result @state)]]
-               (when (< 1 (:tutorial-no @state))
-                 [:td {:align :top} [:pre (:code @state)]])]]])])}
-      (when menu
-        {:component-did-update (fn []
-                                 (.select (gdom/getElement "xmltext"))
-                                 (.execCommand js/document "copy"))})
+(r/create-class
+  (merge
+    {:reagent-render
+     (fn []
+       [:div
+        (when menu
+          [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
+                   :read-only true}])
+        [tutorials-comp]
+        (when (:result @state)
+          [:table {:style {:width "100%"}}
+           [:thead
+            [:tr {:align :left}
+             [:th {:style {:width "50%"}} "Output"]
+             (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
+           [:tbody
+            [:tr
+             [:td {:align :top}
+              (when-let [so (:stdout @state)]
+                [:pre so])
+              [:pre (:result @state)]]
+             (when (< 1 (:tutorial-no @state))
+               [:td {:align :top} [:pre (:code @state)]])]]])])}
+    (when menu
+      {:component-did-update (fn []
+                               (.select (gdom/getElement "xmltext"))
+                               (.execCommand js/document "copy"))})
 
-      )))
+    )))
 
 (defn theview []
   [:div
@@ -140,4 +163,4 @@
    ])
 
 (defn ^{:export true :dev/after-load true} output []
-(r/render [theview] (gdom/getElement "out")))
+  (r/render [theview] (gdom/getElement "out")))

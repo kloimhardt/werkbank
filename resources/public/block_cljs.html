@@ -49,15 +49,20 @@
                   custom="VARIABLE"></category>
     </xml>
 
-
-    <button onClick="block_cljs.view.startsci();">Run</button>
+<table style="width:100%">
+    <tr>
+        <td style="text-align:right">
+            <button onClick="block_cljs.view.startsci();" >Run</button>
+        </td>
+    </tr>
+</table>
     <script source="./tutorials.js"></script>
     <div id="blocklyDiv" style="height: 60%"></div>
     <!--
          <input id="tutorial_no" type="hidden" value=0>
          <input id="tutorial_no" type="text" value=10>
     -->
-    <input id="tutorial_no" type="text" value=10>
+    <input id="tutorial_no" type="hidden" value=10>
     <script src="./sicmblocks_fun.js"></script>
     <script src="/cljs-out/dev-main.js"></script>
     <div id="out"></div>
