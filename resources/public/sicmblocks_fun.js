@@ -1010,4 +1010,61 @@ Blockly.Blocks['text']= {
         }
     )}};
 
+    Blockly.Blocks["map-h-2"]= {
+        init: function() {this.jsonInit(
+            {
+                "type": "map-h-2",
+                "message0": "%1 %2",
+                "args0": [
+                    {
+                        "type": "field_variable",
+                        "name": "key-1",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-2"
+                    }
+                ],
+                "inputsInline": true,
+                "output": null,
+                "colour": 270,
+                "tooltip": "",
+                "helpUrl": ""
+            }
+        );}};
+
+    Blockly.Blocks["map-h-4"]= {
+        init: function() {this.jsonInit(
+            {
+                "type": "map-h-4",
+                "message0": "%1 %2 %3 %4",
+                "args0": [
+                    {
+                        "type": "field_variable",
+                        "name": "key-1",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-2"
+                    },
+                    {
+                        "type": "field_variable",
+                        "name": "key-3",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-4"
+                    }
+                ],
+                "inputsInline": true,
+                "output": null,
+                "colour": 140,
+                "tooltip": "",
+                "helpUrl": ""
+            }
+        );}};
+
 };

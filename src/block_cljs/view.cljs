@@ -17,6 +17,9 @@
 (def menu true)
 
 (def tutorials (vec (concat t-a/vect t-b/vect t-c/vect)))
+(def chapters (vec (concat (repeat (count t-a/vect) "I")
+                           (repeat (count t-b/vect) "II")
+                           (repeat (count t-c/vect) "III"))))
 
 (defn load-workspace [xml-text]
   (.. blockly/Xml
@@ -57,29 +60,36 @@
     (apply str (interpose "\n" (map #(zp/zprint-str % width) code)))
     (pr-str edn-code)))
 
-(defn my-str [e]
-  (let [f (fn [x] (if (nil? x) "nil" (str x)))]
-    (if (seq? e)
-      (apply str (interpose " " (map f e)))
-      (f e))))
-
 (defn part-str [width s]
   (apply str
          (interpose "\n"
                     (map (partial apply str)
                          (partition-all width s)))))
 
+(defn my-str [e width]
+  (let [f (fn [x]
+            (if (nil? x) "nil" (part-str width (str x))))]
+    (if (seq? e)
+      (apply str (interpose " " (map f e)))
+      (f e))))
+
+(defn augment-code-fu [edn-code flat-code fn-code]
+  (if (and (seq (filter #{(second fn-code)} flat-code))
+           (:code edn-code))
+    (if (:dat (:code edn-code))
+      (update-in edn-code [:code :dat] #(cons fn-code %))
+      (update edn-code :code (fn [c] {:dat [fn-code c]})))
+    edn-code))
+
 (defn augment-code [edn-code]
-  (let [b (filter #{'vec-rest} (flatten (w/postwalk #(if (map? %) (vec %) %) edn-code)))]
-    (def edn-code edn-code)
-    (if (and (seq b) (get-in edn-code [:code :dat]))
-      (update-in edn-code [:code :dat] #(concat ['(defn vec-rest
-                                                    "this function added by Blockly parser"
-                                                    [x]
-                                                    (if (coll? x)
-                                                      (vec (rest x))
-                                                      (rest x)))] %))
-      edn-code)))
+  (let [flat-code (flatten (w/postwalk #(if (map? %) (vec %) %) edn-code))]
+    (-> edn-code
+        (augment-code-fu flat-code
+                         '(defn vec-rest "added by Blockly parser" [x]
+                            (let [r (rest x)] (if (seq? r) (vec r) r))))
+        (augment-code-fu flat-code
+                         '(defn vec-cons "added by Blockly parser" [x coll]
+                            (let [c (cons x coll)] (if (seq? c) (vec c) c)))))))
 
 (defn ^:export startsci []
   (let [xml-str (->> (.-mainWorkspace blockly)
@@ -91,11 +101,11 @@
                         (catch js/Error e {:error (.-message e)})) "")
         aug-edn-code (augment-code edn-code)
         theout (atom "")
-        str-width 40
+        str-width 41
         bindings {'println (fn [& x]
-                             (swap! theout str (my-str x) "\n") nil)
+                             (swap! theout str (my-str x str-width) "\n") nil)
                   'print (fn [& x]
-                           (swap! theout str (my-str x)) nil)}
+                           (swap! theout str (my-str x str-width)) nil)}
         erg (try (sci/eval-string (code->break-str str-width
                                                    (:code aug-edn-code))
                                   {:bindings bindings})
@@ -110,52 +120,53 @@
       (when @theout (println @theout))
       (println erg))
     (swap! state assoc
-           :stdout #_(part-str str-width) @theout
-           :result (part-str str-width (my-str erg))
+           :stdout @theout
+           :result (my-str erg str-width)
            :code (if (:error aug-edn-code)
                    "Cannot even parse the blocks"
                    (code->break-str str-width (:code aug-edn-code))))))
 
 (defn tutorials-comp []
-[:div
- [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
- [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
- " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
- [:button {:on-click (tutorial-fu dec)} "<"]
- [:button {:on-click (tutorial-fu inc)} ">"]
- ]
-)
+  [:div
+   [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
+   [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
+   " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
+   "(" (get chapters (:tutorial-no @state)) ")" " "
+   [:button {:on-click (tutorial-fu dec)} "<"]
+   [:button {:on-click (tutorial-fu inc)} ">"]
+   ]
+  )
 
 (defn out-comp []
 (r/create-class
-  (merge
-    {:reagent-render
-     (fn []
-       [:div
-        (when menu
-          [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
-                   :read-only true}])
-        [tutorials-comp]
-        (when (:result @state)
-          [:table {:style {:width "100%"}}
-           [:thead
-            [:tr {:align :left}
-             [:th {:style {:width "50%"}} "Output"]
-             (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
-           [:tbody
-            [:tr
-             [:td {:align :top}
-              (when-let [so (:stdout @state)]
-                [:pre so])
-              [:pre (:result @state)]]
-             (when (< 1 (:tutorial-no @state))
-               [:td {:align :top} [:pre (:code @state)]])]]])])}
-    (when menu
-      {:component-did-update (fn []
-                               (.select (gdom/getElement "xmltext"))
-                               (.execCommand js/document "copy"))})
+(merge
+  {:reagent-render
+   (fn []
+     [:div
+      (when menu
+        [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
+                 :read-only true}])
+      [tutorials-comp]
+      (when (:result @state)
+        [:table {:style {:width "100%"}}
+         [:thead
+          [:tr {:align :left}
+           [:th {:style {:width "50%"}} "Output"]
+           (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
+         [:tbody
+          [:tr
+           [:td {:align :top}
+            (when-let [so (:stdout @state)]
+              [:pre so])
+            [:pre (:result @state)]]
+           (when (< 1 (:tutorial-no @state))
+             [:td {:align :top} [:pre (:code @state)]])]]])])}
+  (when menu
+    {:component-did-update (fn []
+                             (.select (gdom/getElement "xmltext"))
+                             (.execCommand js/document "copy"))})
 
-    )))
+  )))
 
 (defn theview []
   [:div
