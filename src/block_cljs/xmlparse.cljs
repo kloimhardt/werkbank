@@ -3,7 +3,9 @@
 (defn l-block [x]
   (let [type (get-in x [:attributes :type])
         s (get-in x [:content 0 :content 0])
-        t (get-in x [:content 1 :content 0])]
+        t (get-in x [:content 1 :content 0])
+        u (map #(get-in % [:content 0])
+               (let [c (get-in x [:content])] (take (/ (count c) 2) c)))]
     (condp = (subs (str type "___") 0 4)
       "vari" {:var s} ;;"variables_get"
       "num_" {:num s}
@@ -15,6 +17,7 @@
       "idfu" {:idfun [s t]}
       "pair" {:pair "p"}
       "map_" {:map "m"}
+      "map-" {:map-h u}
       "vect" {:vec "v"}
       "let_" {:let "l"}
       "args" {:args "args"}
@@ -66,6 +69,10 @@
       (:idfun x) (let [v (:idfun x)] (cons (symbol (v 0)) (cons (v 1) a)))
       (:pair x) a
       (:map x) (into {} (map vec (partition 2 (first a))))
+      (:map-h x) (apply assoc {}
+                        (interleave
+                          (map (fn [v] (if (= ":" (subs v 0 1)) (symbol v) v)) (:map-h x))
+                          a))
       (:vec x) (first a)
       (:let x) (cons 'let a)
       (:args x) a

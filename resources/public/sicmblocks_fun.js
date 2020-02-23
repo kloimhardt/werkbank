@@ -1067,4 +1067,95 @@ Blockly.Blocks['text']= {
             }
         );}};
 
+    Blockly.Blocks["map-h-6"]= {
+        init: function() {this.jsonInit(
+            {
+                "type": "map-h-6",
+                "message0": "%1 %2 %3 %4 %5 %6",
+                "args0": [
+                    {
+                        "type": "field_variable",
+                        "name": "key-1",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-2"
+                    },
+                    {
+                        "type": "field_variable",
+                        "name": "key-3",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-4"
+                    },
+                    {
+                        "type": "field_variable",
+                        "name": "key-5",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-6"
+                    }
+                ],
+                "inputsInline": true,
+                "output": null,
+                "colour": 230,
+                "tooltip": "",
+                "helpUrl": ""
+            }
+        );}};
+ Blockly.Blocks["map-h-8"]= {
+        init: function() {this.jsonInit(
+            {
+                "type": "map-h-8",
+                "message0": "%1 %2 %3 %4 %5 %6 %7 %8",
+                "args0": [
+                    {
+                        "type": "field_variable",
+                        "name": "key-1",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-2"
+                    },
+                    {
+                        "type": "field_variable",
+                        "name": "key-3",
+                        "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-4"
+                    },{
+                        "type": "field_variable",
+                        "name": "key-5",
+                        "variable": ":"
+                    },{
+                        "type": "input_value",
+                        "name": "val-6"
+                    },{
+                       "type": "field_variable",
+                       "name": "key-7",
+                       "variable": ":"
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "val-8"
+                    }
+                ],
+                "inputsInline": true,
+                "output": null,
+                "colour": 360,
+                "tooltip": "",
+                "helpUrl": ""
+            }
+        );}};
+
+
+
 };

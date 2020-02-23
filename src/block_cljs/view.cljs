@@ -9,6 +9,7 @@
    [block-cljs.tutorials-a :as t-a]
    [block-cljs.tutorials-b :as t-b]
    [block-cljs.tutorials-c :as t-c]
+   [block-cljs.tutorials-d :as t-d]
    [clojure.walk :as w]
    [tubax.core :as sax]
    [reagent.core :as r]
@@ -16,10 +17,11 @@
 
 (def menu true)
 
-(def tutorials (vec (concat t-a/vect t-b/vect t-c/vect)))
+(def tutorials (vec (concat t-a/vect t-b/vect t-c/vect t-d/vect)))
 (def chapters (vec (concat (repeat (count t-a/vect) "I")
                            (repeat (count t-b/vect) "II")
-                           (repeat (count t-c/vect) "III"))))
+                           (repeat (count t-c/vect) "III")
+                           (repeat (count t-d/vect) "IV"))))
 
 (defn load-workspace [xml-text]
   (.. blockly/Xml
@@ -58,7 +60,7 @@
 (defn code->break-str [width edn-code]
   (if-let [code  (:dat edn-code)]
     (apply str (interpose "\n" (map #(zp/zprint-str % width) code)))
-    (pr-str edn-code)))
+    (zp/zprint-str edn-code width)))
 
 (defn part-str [width s]
   (apply str
