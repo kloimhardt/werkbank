@@ -70,10 +70,10 @@
 
 (defn my-str [e width]
   (let [f (fn [x]
-            (if (nil? x) "nil" (part-str width (str x))))]
+            (if (nil? x) "nil" (str x)))]
     (if (seq? e)
-      (apply str (interpose " " (map f e)))
-      (f e))))
+      (part-str width (apply str (interpose " " (map f e))))
+      (part-str width (f e)))))
 
 (defn augment-code-fu [edn-code flat-code fn-code]
   (if (and (seq (filter #{(second fn-code)} flat-code))
