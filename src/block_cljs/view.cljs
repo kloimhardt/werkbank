@@ -48,7 +48,7 @@
       (gforms/setValue el idx)
       (reset! state
               {:stdout nil :result nil :code nil :tutorial-no idx})
-      (reset! app-state nil))))
+      (reset! app-state 0))))
 
 (defonce workspace
   (do
@@ -97,7 +97,6 @@
         (augment-code-fu flat-code
                          '(defn vec-cons "added by Blockly parser" [x coll]
                             (let [c (cons x coll)] (if (seq? c) (vec c) c)))))))
-
 (defn run-code [edn-code]
   (let [aug-edn-code (augment-code edn-code)
         theout (atom "")
@@ -145,28 +144,47 @@
    " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
    "(" (get chapters (:tutorial-no @state)) ")" " "
    [:button {:on-click (tutorial-fu dec)} "<"]
-   [:button {:on-click (tutorial-fu inc)} ">"]
-   ]
-  )
+   [:button {:on-click (tutorial-fu inc)} ">"]])
 
-(defn to-kw [edn-code-si sy]
-  (def u edn-code-si)
+
+(defn filter-defns [edn-code fu]
+  (let [ec (if (:dat edn-code) edn-code {:dat [edn-code]})]
+    (def ec ec)
+    {:dat
+     (conj
+       (vec (filter #(= (symbol "defn") (first %)) (:dat ec)))
+       (list fu)
+       (last (:dat ec)))}))
+
+(defn to-kw [edn-code sy]
+  (def u edn-code)
   (cond
     (symbol? sy)
     (let [s (str sy)]
       (cond
         (= ":" (first s)) (keyword (subs s 1 (count s)))
         (= "nil" s) nil
+        (= "@app-state" s) @app-state
         :else sy))
     (map? sy)
     (if (:on-click sy)
-      (assoc sy :on-click #(run-code {:code '(println "usdlf")}))
+      (assoc sy
+             :on-click
+             #(run-code
+                {:code
+                 (filter-defns edn-code (:on-click sy))}))
       sy)
+    (list? sy)
+    (do
+      (println "tl " sy)
+      (println (augment-code edn-code))
+      (try (sci/eval-string (pr-str sy))
+           (catch js/Error e (.-message e))))
     :else sy))
 
 (defn transform-vec [vect edn-code]
-  (w/postwalk #(to-kw (if (:dat edn-code) (:dat edn-code) [edn-code]) %)
-              vect))
+(w/postwalk #(to-kw edn-code %)
+            vect))
 
 (defn reagent-comp []
   (let [last-vec
@@ -178,40 +196,39 @@
           :else [nil])]
     (when (= (symbol ":div") (first last-vec))
       [:div
-       [:div "the app "  @app-state " end"]
        (transform-vec last-vec (:edn-code @state))])))
 
 (defn out-comp []
-  (r/create-class
-    (merge
-      {:reagent-render
-       (fn []
-         [:div
-          (when menu
-            [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
-                     :read-only true}])
-          [tutorials-comp]
-          [reagent-comp]
-          (when (:result @state)
-            [:table {:style {:width "100%"}}
-             [:thead
-              [:tr {:align :left}
-               [:th {:style {:width "50%"}} "Output"]
-               (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
-             [:tbody
-              [:tr
-               [:td {:align :top}
-                (when-let [so (:stdout @state)]
-                  [:pre so])
-                [:pre (:result @state)]]
-               (when (< 1 (:tutorial-no @state))
-                 [:td {:align :top} [:pre (:code @state)]])]]])])}
-      (when menu
-        {:component-did-update (fn []
-                                 (.select (gdom/getElement "xmltext"))
-                                 (.execCommand js/document "copy"))})
+(r/create-class
+  (merge
+    {:reagent-render
+     (fn []
+       [:div
+        (when menu
+          [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
+                   :read-only true}])
+        [tutorials-comp]
+        [reagent-comp]
+        (when (:result @state)
+          [:table {:style {:width "100%"}}
+           [:thead
+            [:tr {:align :left}
+             [:th {:style {:width "50%"}} "Output"]
+             (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
+           [:tbody
+            [:tr
+             [:td {:align :top}
+              (when-let [so (:stdout @state)]
+                [:pre so])
+              [:pre (:result @state)]]
+             (when (< 1 (:tutorial-no @state))
+               [:td {:align :top} [:pre (:code @state)]])]]])])}
+    (when menu
+      {:component-did-update (fn []
+                               (.select (gdom/getElement "xmltext"))
+                               (.execCommand js/document "copy"))})
 
-      )))
+    )))
 
 (defn theview []
 [:div
@@ -219,4 +236,4 @@
  ])
 
 (defn ^{:export true :dev/after-load true} output []
-(r/render [theview] (gdom/getElement "out")))
+  (r/render [theview] (gdom/getElement "out")))
