@@ -69,10 +69,7 @@
       (:idfun x) (let [v (:idfun x)] (cons (symbol (v 0)) (cons (v 1) a)))
       (:pair x) a
       (:map x) (into {} (map vec (partition 2 (first a))))
-      (:map-h x) (apply assoc {}
-                        (interleave
-                          (map (fn [v] (if (= ":" (subs v 0 1)) (symbol v) v)) (:map-h x))
-                          a))
+      (:map-h x) (apply assoc {} (interleave (map symbol (:map-h x)) a))
       (:vec x) (first a)
       (:let x) (cons 'let a)
       (:args x) a
