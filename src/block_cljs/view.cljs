@@ -11,19 +11,23 @@
    [block-cljs.tutorials-c :as t-c]
    [block-cljs.tutorials-d :as t-d]
    [block-cljs.tutorials-e :as t-e]
+   [block-cljs.tutorials-f :as t-f]
    [clojure.walk :as w]
    [tubax.core :as sax]
    [reagent.core :as r]
    [zprint.core :as zp]))
 
+
 (def menu true)
 
-(def tutorials (vec (concat t-a/vect t-b/vect t-c/vect t-d/vect t-e/vect)))
+(def tutorials (vec (concat t-a/vect t-b/vect t-c/vect t-d/vect t-e/vect
+                            t-f/vect)))
 (def chapters (vec (concat (repeat (count t-a/vect) "I")
                            (repeat (count t-b/vect) "II")
                            (repeat (count t-c/vect) "III")
                            (repeat (count t-d/vect) "IV")
-                           (repeat (count t-e/vect) "V"))))
+                           (repeat (count t-e/vect) "V")
+                           (repeat (count t-f/vect) "VI"))))
 
 (defn load-workspace [xml-text]
   (.. blockly/Xml
@@ -97,6 +101,18 @@
         (augment-code-fu flat-code
                          '(defn vec-cons "added by Blockly parser" [x coll]
                             (let [c (cons x coll)] (if (seq? c) (vec c) c)))))))
+(def timer (atom nil))
+
+(defn start-timer [fn ms msg]
+  (when-not @timer
+    (reset! timer (js/setInterval fn ms))
+    msg))
+
+(defn stop-timer [msg]
+  (js/clearInterval @timer)
+  (reset! timer nil)
+  msg)
+
 (defn run-code [edn-code]
   (let [aug-edn-code (augment-code edn-code)
         theout (atom "")
@@ -105,7 +121,9 @@
                              (swap! theout str (my-str x str-width) "\n") nil)
                   'print (fn [& x]
                            (swap! theout str (my-str x str-width)) nil)
-                  'app-state app-state}
+                  'app-state app-state
+                  'start-timer start-timer
+                  'stop-timer stop-timer}
         erg (try (sci/eval-string (code->break-str str-width
                                                    (:code aug-edn-code))
                                   {:bindings bindings})
@@ -127,64 +145,64 @@
            :edn-code (:code aug-edn-code))))
 
 (defn ^:export startsci []
-  (let [xml-str (->> (.-mainWorkspace blockly)
-                     (.workspaceToDom blockly/Xml)
-                     (.domToPrettyText blockly/Xml))
-        edn-xml (sax/xml->clj xml-str)
-        edn-code (if (seq (:content edn-xml))
-                   (try {:code (edn->code/parse edn-xml)}
-                        (catch js/Error e {:error (.-message e)})) "")]
-    (reset! thexml xml-str)
-    (run-code edn-code)))
+(let [xml-str (->> (.-mainWorkspace blockly)
+                   (.workspaceToDom blockly/Xml)
+                   (.domToPrettyText blockly/Xml))
+      edn-xml (sax/xml->clj xml-str)
+      edn-code (if (seq (:content edn-xml))
+                 (try {:code (edn->code/parse edn-xml)}
+                      (catch js/Error e {:error (.-message e)})) "")]
+  (reset! thexml xml-str)
+  (run-code edn-code)))
 
 (defn tutorials-comp []
-  [:div
-   [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
-   [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
-   " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
-   "(" (get chapters (:tutorial-no @state)) ")" " "
-   [:button {:on-click (tutorial-fu dec)} "<"]
-   [:button {:on-click (tutorial-fu inc)} ">"]])
+[:div
+ [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
+ [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
+ " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
+ "(" (get chapters (:tutorial-no @state)) ")" " "
+ [:button {:on-click (tutorial-fu dec)} "<"]
+ [:button {:on-click (tutorial-fu inc)} ">"]])
 
 
 (defn filter-defns [edn-code fu]
-  (let [ec (if (:dat edn-code) edn-code {:dat [edn-code]})]
-    (def ec ec)
-    {:dat
-     (conj
-       (vec (filter #(= (symbol "defn") (first %)) (:dat ec)))
-       (list fu)
-       (last (:dat ec)))}))
+(let [ec (if (:dat edn-code) edn-code {:dat [edn-code]})]
+  (def ec ec)
+  {:dat
+   (conj
+     (vec (filter #(= (symbol "defn") (first %)) (:dat ec)))
+     (list fu)
+     (last (:dat ec)))}))
 
 (defn to-kw [edn-code sy]
-  (def u edn-code)
-  (cond
-    (symbol? sy)
-    (let [s (str sy)]
-      (cond
-        (= ":" (first s)) (keyword (subs s 1 (count s)))
-        (= "nil" s) nil
-        (= "@app-state" s) @app-state
-        :else sy))
-    (map? sy)
-    (if (:on-click sy)
-      (assoc sy
-             :on-click
-             #(run-code
-                {:code
-                 (filter-defns edn-code (:on-click sy))}))
-      sy)
-    (list? sy)
-    (do
-      (println "tl " sy)
-      (println (augment-code edn-code))
-      (try (sci/eval-string (pr-str sy))
-           (catch js/Error e (.-message e))))
-    :else sy))
+(def u edn-code)
+(cond
+  (symbol? sy)
+  (let [s (str sy)]
+    (cond
+      (= ":" (first s)) (keyword (subs s 1 (count s)))
+      (= "nil" s) nil
+      (= "@app-state" s) @app-state
+      :else sy))
+  (map? sy)
+  (if (:on-click sy)
+    (assoc sy
+           :on-click
+           #(run-code
+              {:code
+               (filter-defns edn-code (:on-click sy))}))
+    sy)
+  (list? sy)
+  (do
+    (println "tl " sy)
+    (println (augment-code edn-code))
+    (try (sci/eval-string (pr-str sy))
+         (catch js/Error e (.-message e))))
+  :else sy))
 
 (defn transform-vec [vect edn-code]
-(w/postwalk #(to-kw edn-code %)
-            vect))
+  (w/postwalk #(to-kw edn-code %)
+              vect))
 
 (defn reagent-comp []
   (let [last-vec
@@ -199,41 +217,41 @@
        (transform-vec last-vec (:edn-code @state))])))
 
 (defn out-comp []
-(r/create-class
-  (merge
-    {:reagent-render
-     (fn []
-       [:div
-        (when menu
-          [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
-                   :read-only true}])
-        [tutorials-comp]
-        [reagent-comp]
-        (when (:result @state)
-          [:table {:style {:width "100%"}}
-           [:thead
-            [:tr {:align :left}
-             [:th {:style {:width "50%"}} "Output"]
-             (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
-           [:tbody
-            [:tr
-             [:td {:align :top}
-              (when-let [so (:stdout @state)]
-                [:pre so])
-              [:pre (:result @state)]]
-             (when (< 1 (:tutorial-no @state))
-               [:td {:align :top} [:pre (:code @state)]])]]])])}
-    (when menu
-      {:component-did-update (fn []
-                               (.select (gdom/getElement "xmltext"))
-                               (.execCommand js/document "copy"))})
+  (r/create-class
+    (merge
+      {:reagent-render
+       (fn []
+         [:div
+          (when menu
+            [:input {:type "text" :value (pr-str @thexml) :id "xmltext"
+                     :read-only true}])
+          [tutorials-comp]
+          [reagent-comp]
+          (when (:result @state)
+            [:table {:style {:width "100%"}}
+             [:thead
+              [:tr {:align :left}
+               [:th {:style {:width "50%"}} "Output"]
+               (when (< 1 (:tutorial-no @state)) [:th "Code"])]]
+             [:tbody
+              [:tr
+               [:td {:align :top}
+                (when-let [so (:stdout @state)]
+                  [:pre so])
+                [:pre (:result @state)]]
+               (when (< 1 (:tutorial-no @state))
+                 [:td {:align :top} [:pre (:code @state)]])]]])])}
+      (when menu
+        {:component-did-update (fn []
+                                 (.select (gdom/getElement "xmltext"))
+                                 (.execCommand js/document "copy"))})
 
-    )))
+      )))
 
 (defn theview []
-[:div
- [out-comp]
- ])
+  [:div
+   [out-comp]
+   ])
 
 (defn ^{:export true :dev/after-load true} output []
   (r/render [theview] (gdom/getElement "out")))
