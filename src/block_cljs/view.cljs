@@ -18,16 +18,17 @@
    [zprint.core :as zp]))
 
 
-(def menu true)
+(def menu false)
 
 (def tutorials (vec (concat t-a/vect t-b/vect t-c/vect t-d/vect t-e/vect
                             t-f/vect)))
-(def chapters (vec (concat (repeat (count t-a/vect) "I")
-                           (repeat (count t-b/vect) "II")
-                           (repeat (count t-c/vect) "III")
-                           (repeat (count t-d/vect) "IV")
-                           (repeat (count t-e/vect) "V")
-                           (repeat (count t-f/vect) "VI"))))
+(def chapters (vec (concat
+                     (repeat (count t-a/vect) "I")
+                     (repeat (count t-b/vect) "II")
+                     (repeat (count t-c/vect) "III")
+                     (repeat (count t-d/vect) "IV")
+                     (repeat (count t-e/vect) "V")
+                     (repeat (count t-f/vect) "VI"))))
 
 (defn load-workspace [xml-text]
   (.. blockly/Xml
@@ -102,16 +103,24 @@
                          '(defn vec-cons "added by Blockly parser" [x coll]
                             (let [c (cons x coll)] (if (seq? c) (vec c) c)))))))
 (def timer (atom nil))
-
-(defn start-timer [fn ms msg]
-  (when-not @timer
-    (reset! timer (js/setInterval fn ms))
-    msg))
+(def counter (atom 0))
 
 (defn stop-timer [msg]
   (js/clearInterval @timer)
   (reset! timer nil)
+  (reset! counter 0)
   msg)
+
+
+(defn start-timer [fu ms max msg]
+  (when-not @timer
+    (reset! timer
+            (js/setInterval (fn []
+                              (swap! counter inc)
+                              (if (< @counter max)
+                                (fu)
+                                (stop-timer nil))) ms))
+    msg))
 
 (defn run-code [edn-code]
   (let [aug-edn-code (augment-code edn-code)
@@ -156,49 +165,54 @@
   (run-code edn-code)))
 
 (defn tutorials-comp []
-[:div
- [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
- [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
- " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
- "(" (get chapters (:tutorial-no @state)) ")" " "
- [:button {:on-click (tutorial-fu dec)} "<"]
- [:button {:on-click (tutorial-fu inc)} ">"]])
+  (if (zero? (:tutorial-no @state))
+    [:div
+     [:button {:on-click (tutorial-fu inc)} "Go to next example."]
+     [:button
+      {:on-click (tutorial-fu (fn [_] (dec (count tutorials))))}
+      "Show me the cool stuff!"]]
+    [:div
+     [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
+     [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
+     " " (inc (:tutorial-no @state)) "/" (count tutorials) " "
+     "(" (get chapters (:tutorial-no @state)) ")" " "
+     [:button {:on-click (tutorial-fu dec)} "<"]
+     [:button {:on-click (tutorial-fu inc)} ">"]
+     ]))
 
 
 (defn filter-defns [edn-code fu]
-(let [ec (if (:dat edn-code) edn-code {:dat [edn-code]})]
-  (def ec ec)
-  {:dat
-   (conj
-     (vec (filter #(= (symbol "defn") (first %)) (:dat ec)))
-     (list fu)
-     (last (:dat ec)))}))
+  (let [ec (if (:dat edn-code) edn-code {:dat [edn-code]})]
+    {:dat
+     (conj
+       (vec (filter #(= (symbol "defn") (first %)) (:dat ec)))
+       (list fu)
+       (last (:dat ec)))}))
 
 (defn to-kw [edn-code sy]
-(def u edn-code)
-(cond
-  (symbol? sy)
-  (let [s (str sy)]
-    (cond
-      (= ":" (first s)) (keyword (subs s 1 (count s)))
-      (= "nil" s) nil
-      (= "@app-state" s) @app-state
-      :else sy))
-  (map? sy)
-  (if (:on-click sy)
-    (assoc sy
-           :on-click
-           #(run-code
-              {:code
-               (filter-defns edn-code (:on-click sy))}))
-    sy)
-  (list? sy)
-  (do
-    (println "tl " sy)
-    (println (augment-code edn-code))
-    (try (sci/eval-string (pr-str sy))
-         (catch js/Error e (.-message e))))
-  :else sy))
+  (cond
+    (symbol? sy)
+    (let [s (str sy)]
+      (cond
+        (= ":" (first s)) (keyword (subs s 1 (count s)))
+        (= "nil" s) nil
+        (= "@app-state" s) @app-state
+        :else sy))
+    (map? sy)
+    (if (:on-click sy)
+      (assoc sy
+             :on-click
+             #(run-code
+                {:code
+                 (filter-defns edn-code (:on-click sy))}))
+      sy)
+    (list? sy)
+    (do
+      (println "tl " sy)
+      (println (augment-code edn-code))
+      (try (sci/eval-string (pr-str sy))
+           (catch js/Error e (.-message e))))
+    :else sy))
 
 (defn transform-vec [vect edn-code]
   (w/postwalk #(to-kw edn-code %)

@@ -16,7 +16,8 @@
  {:block-cljs {:target :browser
                :output-dir "target_shadow/public/cljs-out"
                :asset-path "/cljs-out"
-               :modules {:dev-main {:entries [block-cljs.view]}}}}}
+               :modules {:dev-main {:entries [block-cljs.view]}}
+               :compiler-options {:optimizations :simple}}}}
 
 ;; npm init
 ;; npm install
