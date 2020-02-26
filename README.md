@@ -1,7 +1,3 @@
-# werkbank
-
-Translate visual Blockly tiles into executable Clojure code.
-
 ## Clojure Tutorial with Blocks
 
 If you want to try your hands on some blocks on-line, go here: [CLJ-BLOCKS](https://kloimhardt.github.io/clj_blocks.html)
@@ -9,6 +5,8 @@ If you want to try your hands on some blocks on-line, go here: [CLJ-BLOCKS](http
 ## Showing the power of Lisp without the parentheses
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
+
+In contrast to the above tutorial, the fully-fledged werkbank project does not work on-line. You have to install [Clojure](https://www.clojure.org/guides/getting_started).
 
 Look at the [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) which shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression. Only remarkebly few building-blocks are needed to use the full library:
 
