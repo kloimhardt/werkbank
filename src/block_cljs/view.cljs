@@ -167,10 +167,10 @@
 (defn tutorials-comp []
   (if (zero? (:tutorial-no @state))
     [:div
-     [:button {:on-click (tutorial-fu inc)} "Go to next example."]
-     [:button
-      {:on-click (tutorial-fu (fn [_] (dec (count tutorials))))}
-      "Show me the cool stuff!"]]
+     [:button {:on-click (tutorial-fu inc)} "Go to next example"]
+     #_[:button
+        {:on-click (tutorial-fu (fn [_] (dec (count tutorials))))}
+        "Go to rocket launch"]]
     [:div
      [:button {:on-click (tutorial-fu #(- % 5))} "<<"]
      [:button {:on-click (tutorial-fu #(+ % 5))} ">>"]
