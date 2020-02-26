@@ -4,6 +4,12 @@ Translate visual Blockly tiles into executable Clojure code. Show the power of L
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
 
+## Clojure Tutorial with Blocks
+
+If you want to try your hands on some blocks on-line, go here: [CLJ-BLOCKS](https://kloimhardt.github.io/clj_blocks.html)
+
+## Showing the power of Lisp without the parentheses
+
 Look at the [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) which shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression. Only remarkebly few building-blocks are needed to use the full library:
 
 ![screenshotmenus](https://kloimhardt.github.io/werkbank_menus.png)
@@ -12,14 +18,11 @@ To be sure (as any Clojurist will quickly see), the number of building-blocks co
 
 The project runs (and is meant to run) locally in dev mode with figwheel. On pressing the "run" button, a file containing Clojure code is generated and executed, just as if it were typed and saved using a keyboard. So there is no restriction to any specific library, anything can be added to deps.edn and used like in a normal project. At a certain point, a programmer even can forget about Blockly and continue hacking the code in one's favourite editor.
 
-Blockly is very well suited for ready made demonstrations to experts outside of programming, e.g. experts in physics or graphical art or cancer research. Namely to show them how their very own domian can be fruitfully modelled by programmers using Clojure Libraries. Here I demonstarte the use of [SICMutils](https://github.com/littleredcomputer/sicmutils) and (further down) [La Habra](https://github.com/sarahgp/la-habra), but datalog/datahike comes to mind. Here, I do not see Blockly so much as a tool to teach programming in general, imho for this the text-based approach of Racket and Maria-Cloud is best. Blockly (hiding parens!) should merely wet the appetite for problem solving in Clojure. The two way grahical+text approach of Python based BlockPy also shows a way in that direction. In this sense "Scratch is for kids" can be read as: they are experts in playing, let's wet their appetite to play in a meaningful way using computers.
+Blockly is very well suited for ready made demonstrations to experts outside of programming, e.g. experts in physics or graphical art or cancer research. Namely to show them how their very own domian can be fruitfully modelled by programmers using Clojure Libraries. Here I demonstarte the use of [SICMutils](https://github.com/littleredcomputer/sicmutils) and (further down) [La Habra](https://github.com/sarahgp/la-habra), but datalog/datahike comes to mind. Here, in this figwheel-driven project, I do not see Blockly so much as a tool to teach programming in general, imho for this the text-based approach of Racket and Maria-Cloud is best. However, the above [on-line example](https://kloimhardt.github.io/clj_blocks.html) is my take on this issue of providing a Clojure beginner experience. In any case, Blockly (hiding parens!) should wet the appetite for problem solving in Clojure. The two way grahical+text approach of Python based BlockPy also shows a way in that direction.
 
 The Video demonstration is based on the [SICM book by Sussman  et.al.](https://mitpress.mit.edu/sites/default/files/titles/content/sicm_edition_2/book.html). It shows how to calculate a beast known as Lagrangian Equation using the [SICMUtils Library](https://github.com/littleredcomputer/sicmutils). In addition, a more comprehensive Blockly Workspace for SICMUtils, which also shows the plotting capabilities of the [Vega Library](https://vega.github.io/vega), is provided (see below). 
 
 The second (short) video further down demonstartes the use of the [La Habra Library](https://github.com/sarahgp/la-habra), which was shown (using a keyboard) at the 2019 [Heart of Clojure](https://www.youtube.com/watch?v=F4pozY_RF5c) conference.
-
-## Showing the power of Lisp without the parentheses
-
 
 ## Building the project
 
@@ -81,6 +84,6 @@ Such an omission, while cursed, is made possible by this certain Lisp super-powe
 
 So, the chosen building blocks move away from the code-is-data paradigm. Because they allow to represent the same edn-vector in two different graphical ways. This means that in the workspace examples a choice is made, a choice for a certain (and hopefully gentle) Syntax to represent Clojure-code.
 
-In the same vain, infix notation for adding (multiplication etc.) of numbers is introduced. Maybe it is best to explain infix notation like shown below:
+In the same vein, infix notation for adding (multiplication etc.) of numbers is introduced. Maybe it is best to explain infix notation like shown below:
 
 ![screenshot infix](https://kloimhardt.github.io/infix.png)
