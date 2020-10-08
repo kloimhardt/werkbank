@@ -1,6 +1,6 @@
 ## Clojure Tutorial with Blocks
 
-If you want to try your hands on some blocks on-line, go here: [CLJ-BLOCKS](https://kloimhardt.github.io/clj_blocks.html)
+If you want to try your hands on some blocks on-line, go here: [clj-tiles](https://kloimhardt.github.io/clj_blocks.html)
 
 ## Showing the power of Lisp without the parentheses
 
