@@ -1,6 +1,6 @@
 ## Video demonstration of the project
 
-This [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression.
+This [demo video](https://youtu.be/V7unwER5wFc) shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression.
 
 ## Teaser: on-line graphical puzzle to learn the basics of Clojure
 
