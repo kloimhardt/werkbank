@@ -1,14 +1,18 @@
-## Clojure Tutorial with Blocks
+## Video demonstration of the project
 
-If you want to try your hands on some blocks on-line, go here: [clj-tiles](https://kloimhardt.github.io/clj_blocks.html)
+This [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression.
 
-## Showing the power of Lisp without the parentheses
+## Teaser: on-line graphical puzzle to learn the basics of Clojure
+
+ With [clj-tiles](https://kloimhardt.github.io/clj_blocks.html), you can try your hands on some blocks.
+
+## Werkbank: Showing the power of Lisp without the parentheses
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
 
-In contrast to the above tutorial, the fully-fledged werkbank project does not work on-line. You have to install [Clojure](https://www.clojure.org/guides/getting_started).
+In contrast to the above tutorial about the basics of Clojure, the fully-fledged werkbank project does not work on-line. You have to install [Clojure](https://www.clojure.org/guides/getting_started).
 
-Look at the [demo video](https://kloimhardt.github.io/driven_pendulum.mp4) which shows the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library in action. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression. Only remarkebly few building-blocks are needed to use the full library:
+Only remarkebly few building-blocks are needed to use the full library:
 
 ![screenshotmenus](https://kloimhardt.github.io/werkbank_menus.png)
 
