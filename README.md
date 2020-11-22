@@ -8,9 +8,9 @@ This [video](https://youtu.be/V7unwER5wFc) shows the purpose of Werkbank by demo
 
 ## Note on state of repository (Nov 2020)
 
-I developed Werkbank in 2019. Since then, SICMUtils has been ported to ClojureScript, [Oz](https://github.com/metasoarous/oz) and [Saite](https://github.com/jsa-aerial/saite) made huge progress and [Notespace](https://github.com/scicloj/notespace) and [Blockoid](https://github.com/ParkerICI/blockoid) appeared. Werkbank, instead of living in this ecosystem, uses custom code. Moreover, the code for the clj-tiles tutorial is not in the repository, it can be accessed via Chrome's devtools though (in Sources/.../block-cljs/). 
+I developed Werkbank in 2019. Since then, [Oz](https://github.com/metasoarous/oz) and [Saite](https://github.com/jsa-aerial/saite) made huge progress and [Notespace](https://github.com/scicloj/notespace) and [Blockoid](https://github.com/ParkerICI/blockoid) appeared. Werkbank, instead of living in this ecosystem, uses custom code. Moreover, the code for the clj-tiles tutorial is not in the repository, it can be accessed via Chrome's devtools (in Sources/.../block-cljs/). 
 
-The video and tutorial, however, are still close to the best I could come up with.
+The video and tutorial, however, are still close to the best I could come up with. But here is a new opportunity: since SICMUtils has been ported to ClojureScript, an on-line graphical puzzle to learn SICMUtils has become feasible. The main effort would be to figure out suitable puzzles, which best required a feedback audience in the form of an actual physics seminar.
 
 ## Werkbank: Showing the power of Lisp without the parentheses
 
