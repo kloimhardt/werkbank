@@ -12,7 +12,7 @@ I developed Werkbank in 2019. Since then, [Oz](https://github.com/metasoarous/oz
 
 The video and tutorial, however, are still close to the best I could come up with. But here is a new opportunity: since SICMUtils has been ported to ClojureScript, an on-line graphical puzzle to learn SICMUtils has become feasible. The main effort would be to figure out suitable puzzles, which best required a feedback audience in the form of an actual physics seminar.
 
-## Werkbank: Showing the power of Lisp without the parentheses
+## Werkbank: Showing the virtue of Lisp without the parentheses
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
 
@@ -22,7 +22,7 @@ Only remarkebly few building-blocks are needed to use the full library:
 
 ![screenshotmenus](https://kloimhardt.github.io/werkbank_menus.png)
 
-To be sure (as any Clojurist will quickly see), the number of building-blocks could be reduced further without restricting access to the library. But the point of this project is to present the power of the language and thus to choose instructive building-blocks, not a minimal set.
+To be sure (as any Clojurist will quickly see), the number of building-blocks could be reduced further without restricting access to the library. But the point of this project is to present the virtue of the language and thus to choose instructive building-blocks, not a minimal set.
 
 The project runs (and is meant to run) locally in dev mode with figwheel. On pressing the "run" button, a file containing Clojure code is generated and executed, just as if it were typed and saved using a keyboard. So there is no restriction to any specific library, anything can be added to deps.edn and used like in a normal project. At a certain point, a programmer even can forget about Blockly and continue hacking the code in one's favourite editor.
 
@@ -88,7 +88,7 @@ The following two function definitions look different on the workspace but resul
 
 To be sure, only the left version sould be used, I think the right one is confusing. But this example shows, that one could in priciple omit the whole building-block section named "defn" (which is visible in the screenshot farther above).
 
-Such an omission, while cursed, is made possible by this certain Lisp super-power which is often termed with slogans as "Lisp has no Syntax", "Homoiconicity" or "Code is Data". I think this super-power should not be mentioned when Clojure is presentd or described. It is better to show the normal power of Clojure, namely its lean Syntax for accessing powerful libraries.
+Such an omission is made possible by this certain Lisp feature which is often termed with slogans as "Lisp has no Syntax", "Homoiconicity" or "Code is Data" (sometimes in connection with words like lisp-curse and superpower). I think this certain feature should not be mentioned when Clojure is presented or described. It is better to show the prominent feature of Clojure, namely its lean Syntax for accessing useful libraries.
 
 So, the chosen building blocks move away from the code-is-data paradigm. Because they allow to represent the same edn-vector in two different graphical ways. This means that in the workspace examples a choice is made, a choice for a certain (and hopefully gentle) Syntax to represent Clojure-code.
 
