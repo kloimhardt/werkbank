@@ -2,15 +2,11 @@
 
 This [video](https://youtu.be/V7unwER5wFc) shows the purpose of Werkbank by demonstrating some features of the sophisticated [SICMutils](https://github.com/littleredcomputer/sicmutils) library. The video is meant for experts in the domain of theoretical Physics, but muting the sound and watching the tiles moving for one or two minutes gives a good impression.
 
-## Graphical puzzle to learn the basics of Clojure on-line
+## Follow up Project: Graphical puzzle
 
- [clj-tiles](https://kloimhardt.github.io/clj_blocks.html) is a Clojure tutorial where you can try your hands on some blocks.
+[clj-tiles](https://github.com/kloimhardt/clj-tiles) is an online Clojure and SICM tutorial where you can [try your hands](https://kloimhardt.github.io/clj_blocks.html)on some blocks (SICM part not live yet).
 
-## Note on state of repository (Nov 2020)
-
-I developed Werkbank in 2019. Since then, [Oz](https://github.com/metasoarous/oz) and [Saite](https://github.com/jsa-aerial/saite) made huge progress and [Notespace](https://github.com/scicloj/notespace) and [Blockoid](https://github.com/ParkerICI/blockoid) appeared. Werkbank, instead of living in this ecosystem, uses custom code. Moreover, the code for the clj-tiles tutorial is not in the repository, it can be accessed via Chrome's devtools (in Sources/.../block-cljs/). 
-
-The video and tutorial, however, are still close to the best I could come up with. But here is a new opportunity: since SICMUtils has been ported to ClojureScript, an on-line graphical puzzle to learn SICMUtils has become feasible. The main effort would be to figure out suitable puzzles, which best required a feedback audience in the form of an actual physics seminar.
+I developed Werkbank in 2019. The video and tutorial, however, are still close to the best I could come up with. But here is a new opportunity: since SICMUtils has been ported to ClojureScript, an on-line graphical puzzle to learn SICMUtils has become feasible. This is the aim of the clj-tiles project. The main effort is to figure out suitable puzzles, which best required a feedback audience in the form of an actual physics seminar.
 
 ## Werkbank: Showing the virtue of Lisp without the parentheses
 
