@@ -4,9 +4,7 @@ This [video](https://youtu.be/V7unwER5wFc) shows the purpose of Werkbank by demo
 
 ## Follow up Project: Graphical puzzle
 
-[clj-tiles](https://github.com/kloimhardt/clj-tiles) is an online Clojure and SICM tutorial where you can [try your hands](https://kloimhardt.github.io/clj_blocks.html)on some blocks (SICM part not live yet).
-
-I developed Werkbank in 2019. The video and tutorial, however, are still close to the best I could come up with. But here is a new opportunity: since SICMUtils has been ported to ClojureScript, an on-line graphical puzzle to learn SICMUtils has become feasible. This is the aim of the clj-tiles project. The main effort is to figure out suitable puzzles, which best required a feedback audience in the form of an actual physics seminar.
+[clj-tiles](https://github.com/kloimhardt/clj-tiles) is an online Clojure and SICM tutorial where you can [try your hands](https://kloimhardt.github.io/cljtiles.html?page=freeparticle) on some blocks.
 
 ## Werkbank: Showing the virtue of Lisp without the parentheses
 
