@@ -10,7 +10,7 @@ This [video](https://youtu.be/V7unwER5wFc) shows the purpose of Werkbank by demo
 
 ![screenshot](https://kloimhardt.github.io/werkbank_fullscreen.png)
 
-In contrast to the above tutorial about the basics of Clojure, the fully-fledged werkbank project does not work on-line. You have to install [Clojure](https://www.clojure.org/guides/getting_started).
+In contrast to the above (newer) clj-tiles project, the werkbank project does not work on-line. You have to install [Clojure](https://www.clojure.org/guides/getting_started).
 
 Only remarkebly few building-blocks are needed to use the full library:
 
